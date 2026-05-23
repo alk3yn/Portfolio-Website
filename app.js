@@ -32,106 +32,100 @@ function preloadImages() {
     });
 }
 
-// Run image preloading and loading screen logic when the DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    preloadImages();
-    // Start the loading screen counter
-    startLoadingScreenCounter();
-});
-
-// Handles slideshow functionality with shuffle, transitions, and pause-on-hover
+// Handles slideshow functionality safely without breaking the DOM
 function initializeSlideshow() {
     try {
-        const slideContainers = Array.from(document.querySelectorAll('.slide-container'));
-        let currentIndex = 0;
-        const shuffleArray = (array) => {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        };
-        let shuffledSlides = shuffleArray([...slideContainers]);
+        const slideContainers = document.querySelectorAll('.slide-container');
+        if (slideContainers.length === 0) return;
+
+        // Start with a random slide
+        let currentIndex = Math.floor(Math.random() * slideContainers.length);
+        
         const activateSlide = (index) => {
-            shuffledSlides[index].querySelector('.background-slide').classList.add('active');
-            shuffledSlides[index].querySelector('.slide').classList.add('active');
+            slideContainers[index].querySelector('.background-slide').classList.add('active');
+            slideContainers[index].querySelector('.slide').classList.add('active');
         };
+        
         activateSlide(currentIndex);
 
         const transitionSlide = () => {
-            const currentContainer = shuffledSlides[currentIndex];
+            const currentContainer = slideContainers[currentIndex];
             currentContainer.querySelector('.background-slide').classList.remove('active');
             currentContainer.querySelector('.slide').classList.remove('active');
-            currentIndex = (currentIndex + 1) % shuffledSlides.length;
-            const nextContainer = shuffledSlides[currentIndex];
-            if (!nextContainer) {
-                return;
-            }
-
-            const backgroundSlide = nextContainer.querySelector('.background-slide');
-            const slide = nextContainer.querySelector('.slide');
-
-            if (!backgroundSlide || !slide) {
-                return;
-            }
-            backgroundSlide.classList.add('active');
-            slide.classList.add('active');
+            
+            currentIndex = (currentIndex + 1) % slideContainers.length;
+            
+            const nextContainer = slideContainers[currentIndex];
+            nextContainer.querySelector('.background-slide').classList.add('active');
+            nextContainer.querySelector('.slide').classList.add('active');
         };
-        let slideInterval = setInterval(transitionSlide, 3000);
+
+        let slideInterval = setInterval(transitionSlide, 4000);
         const container = document.querySelector('.slideshow-container');
+        
         container.addEventListener('mouseenter', () => clearInterval(slideInterval));
         container.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(transitionSlide, 3000);
+            slideInterval = setInterval(transitionSlide, 4000);
         });
-        return slideInterval;
     } catch (error) {
         console.error("Error initializing slideshow:", error);
     }
 }
 
-// Displays a loading counter and fades out the loading screen when complete
-function startLoadingScreenCounter() {
+// Ensure the page actually waits for resources to load instead of using a fake timer
+window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loadingScreen');
     const counter = document.querySelector('.loading-counter');
     let count = 0;
 
-    const updateCounter = () => {
+    // Rapidly finish the counter visualization once the actual page is loaded
+    const finishLoading = setInterval(() => {
         if (count < 100) {
-            count++;
+            count += Math.floor(Math.random() * 10) + 5;
+            if (count > 100) count = 100;
             counter.textContent = count;
-            setTimeout(updateCounter, 20);
         } else {
+            clearInterval(finishLoading);
+            loadingScreen.style.opacity = '0';
             setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.remove();
-                    document.getElementById('mainContent').classList.add('content-loaded');
-                    initializeSlideshow();
-                }, 800);
-            }, 200);
+                loadingScreen.remove();
+                document.getElementById('mainContent').classList.add('content-loaded');
+                initializeSlideshow();
+            }, 800);
         }
-    };
+    }, 30);
+});
 
-    updateCounter();
-}
+// Run image preloading early
+document.addEventListener('DOMContentLoaded', () => {
+    preloadImages();
+    initializeWorkScroll();
+});
 
-// Enables horizontal drag-to-scroll behavior for the games section
+// MARQUEE & DRAG SCROLL LOGIC
 const gamesScroll = document.querySelector('.games-scroll');
 let isDown = false;
 let startX;
 let scrollLeft;
 let isDragging = false;
+let isHovered = false;
+let autoScrollSpeed = 1; // Pixels per frame
 
+// Mouse Events
 gamesScroll.addEventListener('mousedown', (e) => handleDragStart(e));
-gamesScroll.addEventListener('mouseleave', () => handleDragEnd());
+gamesScroll.addEventListener('mouseleave', () => {
+    isHovered = false;
+    handleDragEnd();
+});
+gamesScroll.addEventListener('mouseenter', () => isHovered = true);
 gamesScroll.addEventListener('mouseup', () => handleDragEnd());
 gamesScroll.addEventListener('mousemove', (e) => handleDragMove(e));
 
+// Touch Events
 gamesScroll.addEventListener('touchstart', (e) => handleDragStart(e.touches[0]));
 gamesScroll.addEventListener('touchend', () => handleDragEnd());
 gamesScroll.addEventListener('touchmove', (e) => handleDragMove(e.touches[0]));
 
-// Initializes drag state on mouse/touch start
 function handleDragStart(e) {
     isDown = true;
     startX = e.pageX - gamesScroll.offsetLeft;
@@ -140,19 +134,17 @@ function handleDragStart(e) {
     gamesScroll.classList.add('dragging');
 }
 
-// Clears drag state on mouse/touch end or leave
 function handleDragEnd() {
     isDown = false;
     isDragging = false;
     gamesScroll.classList.remove('dragging');
 }
 
-// Scrolls the container based on drag movement
 function handleDragMove(e) {
     if (!isDown || !isDragging) return;
     e.preventDefault();
     const x = e.pageX - gamesScroll.offsetLeft;
-    const walk = (x - startX) * 2;
+    const walk = (x - startX) * 2; // Scroll-fast multiplier
     gamesScroll.scrollLeft = scrollLeft - walk;
 }
 
@@ -161,11 +153,25 @@ document.querySelectorAll('img').forEach(img => {
     img.ondragstart = () => false;
 });
 
-// Duplicates the game items inside the scroll container to create a looped effect
+// Duplicates the game items and handles the smooth Javascript continuous scroll
 function initializeWorkScroll() {
     const gamesScroll = document.querySelector('.games-scroll');
+    // Duplicate the content to allow infinite scrolling
     gamesScroll.innerHTML += gamesScroll.innerHTML;
-}
 
-// Runs the continuous scroll initializer when the page loads
-document.addEventListener('DOMContentLoaded', initializeWorkScroll);
+    function autoScroll() {
+        // Only scroll automatically if the user isn't hovering or dragging
+        if (!isHovered && !isDragging) {
+            gamesScroll.scrollLeft += autoScrollSpeed;
+
+            // If we've scrolled past the first set of items, seamlessly jump back
+            if (gamesScroll.scrollLeft >= gamesScroll.scrollWidth / 2) {
+                gamesScroll.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+    
+    // Start the animation loop
+    requestAnimationFrame(autoScroll);
+}
