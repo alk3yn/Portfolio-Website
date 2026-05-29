@@ -138,7 +138,10 @@ body {
 
 .resume-wrapper {
     margin-top: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .resume-btn {
