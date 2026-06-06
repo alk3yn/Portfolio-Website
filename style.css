@@ -235,26 +235,25 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .games-scroll {
     display: flex;
     gap: 30px;
     padding: 20px 0;
-    width: 100%;
-    overflow-x: auto; 
-    cursor: grab;
-    position: relative;
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+    width: max-content; 
+    animation: marqueeScroll 40s linear infinite;
 }
 
-.games-scroll::-webkit-scrollbar {
-    display: none; 
+.games-scroll:hover {
+    animation-play-state: paused;
 }
 
-.games-scroll.dragging {
-    cursor: grabbing;
+.game-item {
+    flex: 0 0 300px;
+    width: 300px;
 }
 
 .game-item img {
@@ -262,8 +261,21 @@ body {
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
-    -webkit-user-drag: none; 
-    user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-1980px); 
+    }
 }
 
 .contact-container {
