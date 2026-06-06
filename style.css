@@ -232,16 +232,17 @@ body {
 }
 
 .games-wrapper {
+    width: 100%;
     overflow: hidden;
     position: relative;
-    white-space: nowrap; 
 }
 
 .games-scroll {
     display: flex;
     gap: 30px;
     padding: 20px 0;
-    width: max-content;
+    width: 100%; 
+    overflow-x: hidden; 
     cursor: grab;
 }
 
