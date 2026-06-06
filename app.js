@@ -144,7 +144,7 @@ function handleDragMove(e) {
     if (!isDown || !isDragging) return;
     e.preventDefault();
     const x = e.pageX - gamesScroll.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll-fast multiplier
+    const walk = (x - startX) * 2; 
     gamesScroll.scrollLeft = scrollLeft - walk;
 }
 

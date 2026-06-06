@@ -231,25 +231,26 @@ body {
     width: 50vw;
 }
 
-.games-wrapper {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
 .games-scroll {
     display: flex;
     gap: 30px;
     padding: 20px 0;
-    width: 100%; 
-    overflow-x: hidden; 
+    width: 100%;
+    
+    overflow-x: auto; 
     cursor: grab;
+
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+.games-scroll::-webkit-scrollbar {
+    display: none; 
 }
 
 .games-scroll.dragging {
     cursor: grabbing;
 }
-
 .games-scroll::-webkit-scrollbar {
     height: 8px;
 }
