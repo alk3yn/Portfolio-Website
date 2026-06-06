@@ -109,69 +109,88 @@ let startX;
 let scrollLeft;
 let isDragging = false;
 let isHovered = false;
-let autoScrollSpeed = 1; // Pixels per frame
 
 // Mouse Events
-gamesScroll.addEventListener('mousedown', (e) => handleDragStart(e));
-gamesScroll.addEventListener('mouseleave', () => {
-    isHovered = false;
-    handleDragEnd();
-});
-gamesScroll.addEventListener('mouseenter', () => isHovered = true);
-gamesScroll.addEventListener('mouseup', () => handleDragEnd());
-gamesScroll.addEventListener('mousemove', (e) => handleDragMove(e));
-
-// Touch Events
-gamesScroll.addEventListener('touchstart', (e) => handleDragStart(e.touches[0]));
-gamesScroll.addEventListener('touchend', () => handleDragEnd());
-gamesScroll.addEventListener('touchmove', (e) => handleDragMove(e.touches[0]));
-
-function handleDragStart(e) {
+gamesScroll.addEventListener('mousedown', (e) => {
     isDown = true;
     startX = e.pageX - gamesScroll.offsetLeft;
     scrollLeft = gamesScroll.scrollLeft;
     isDragging = true;
     gamesScroll.classList.add('dragging');
-}
+});
 
-function handleDragEnd() {
+gamesScroll.addEventListener('mouseleave', () => {
+    isHovered = false;
     isDown = false;
     isDragging = false;
     gamesScroll.classList.remove('dragging');
-}
+});
 
-function handleDragMove(e) {
-    if (!isDown || !isDragging) return;
+gamesScroll.addEventListener('mouseenter', () => isHovered = true);
+
+gamesScroll.addEventListener('mouseup', () => {
+    isDown = false;
+    isDragging = false;
+    gamesScroll.classList.remove('dragging');
+});
+
+gamesScroll.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - gamesScroll.offsetLeft;
     const walk = (x - startX) * 2; 
     gamesScroll.scrollLeft = scrollLeft - walk;
-}
-
-// Prevent users from dragging images manually
-document.querySelectorAll('img').forEach(img => {
-    img.ondragstart = () => false;
 });
 
-// Duplicates the game items and handles the smooth Javascript continuous scroll
+// Touch Events for Mobile
+gamesScroll.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - gamesScroll.offsetLeft;
+    scrollLeft = gamesScroll.scrollLeft;
+    isDragging = true;
+});
+gamesScroll.addEventListener('touchend', () => {
+    isDown = false;
+    isDragging = false;
+});
+gamesScroll.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - gamesScroll.offsetLeft;
+    const walk = (x - startX) * 2;
+    gamesScroll.scrollLeft = scrollLeft - walk;
+});
+
+// loop initializer
 function initializeWorkScroll() {
-    const gamesScroll = document.querySelector('.games-scroll');
-    // Duplicate the content to allow infinite scrolling
-    gamesScroll.innerHTML += gamesScroll.innerHTML;
+    if (!gamesScroll) return;
 
-    function autoScroll() {
-        // Only scroll automatically if the user isn't hovering or dragging
-        if (!isHovered && !isDragging) {
-            gamesScroll.scrollLeft += autoScrollSpeed;
+    const children = Array.from(gamesScroll.children);
+    if (children.length === 0) return;
 
-            // If we've scrolled past the first set of items, seamlessly jump back
-            if (gamesScroll.scrollLeft >= gamesScroll.scrollWidth / 2) {
-                gamesScroll.scrollLeft = 0;
+    children.forEach(child => {
+        gamesScroll.appendChild(child.cloneNode(true));
+    });
+
+    let jumpPoint = 0;
+
+    // Calculate pixel to loop at
+    requestAnimationFrame(() => {
+        const firstClone = gamesScroll.children[children.length];
+        jumpPoint = firstClone.offsetLeft - children[0].offsetLeft;
+
+        function autoScroll() {
+            // Only scroll if not dragging or hovering
+            if (!isHovered && !isDragging && jumpPoint > 0) {
+                gamesScroll.scrollLeft += 1;
+                
+                // When we hit the exact start of the clone, seamlessly jump back to 0
+                if (gamesScroll.scrollLeft >= jumpPoint) {
+                    gamesScroll.scrollLeft -= jumpPoint;
+                }
             }
+            requestAnimationFrame(autoScroll);
         }
+        
         requestAnimationFrame(autoScroll);
-    }
-    
-    // Start the animation loop
-    requestAnimationFrame(autoScroll);
+    });
 }
