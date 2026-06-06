@@ -265,35 +265,6 @@ body {
     -webkit-user-drag: none; 
     user-select: none;
 }
-.games-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-
-.games-scroll::-webkit-scrollbar-track {
-    background: #222;
-}
-
-.games-scroll::-webkit-scrollbar-thumb {
-    background: #0ff;
-    border-radius: 4px;
-}
-
-.game-item {
-    flex: 0 0 300px;
-    min-width: 300px;
-}
-
-.game-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.game-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-}
 
 .contact-container {
     max-width: 1200px;
