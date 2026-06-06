@@ -206,3 +206,36 @@ function initializeWorkScroll() {
         });
     });
 }
+
+
+// ─── SCROLL-TRIGGERED ANIMATIONS ────────────────────────────────────────────
+
+function initScrollAnimations() {
+    // Sections fade in when they enter the viewport
+    const sections = document.querySelectorAll('.main-section');
+    const progressBars = document.querySelectorAll('.progress');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            // Fade-in the section
+            entry.target.classList.add('visible');
+
+            // If it's the skills section, animate each progress bar to its target width
+            const bars = entry.target.querySelectorAll('.progress');
+            bars.forEach(bar => {
+                const target = bar.style.getPropertyValue('--target-width') || bar.getAttribute('data-width');
+                if (target) {
+                    requestAnimationFrame(() => { bar.style.width = target; });
+                }
+            });
+
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+document.addEventListener('DOMContentLoaded', initScrollAnimations);
