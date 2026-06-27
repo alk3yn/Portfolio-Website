@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://tejas-agrawal.web.app/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tejas-agrawal.web.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tejas-agrawal.web.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tejas-agrawal.web.app/"/>
+    <image:image>
+      <image:loc>https://tejas-agrawal.web.app/og-image.jpg</image:loc>
+      <image:title>Tejas Agrawal - Software Engineer & Game Developer</image:title>
+    </image:image>
+  </url>
+
+</urlset>
