@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" data-lang="jp">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="My Portfolio showcasing IT Engineering, Web Development, Unity, and Unreal Engine projects">
-  <title>Tejas Agrawal Portfolio</title>
+  <meta name="description" content="テジャス・アグラワルのポートフォリオ。Unity、Unreal Engine、Web開発。富山県高岡市在住。">
+  <meta name="description" lang="en"
+    content="Portfolio of Tejas Agrawal. Unity, Unreal Engine, and Web Development. Based in Takaoka, Japan.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tejas Agrawal — Software Engineer & Game Developer">
+  <meta property="og:description"
+    content="Portfolio showcasing Unity, Unreal Engine, and full-stack web development projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tejas Agrawal",
+    "jobTitle": "Software Engineer & Game Developer",
+    "url": "https://yourdomain.com",
+    "sameAs": [
+      "https://github.com/tejas-5",
+      "https://alk3yn.itch.io/"
+    ]
+  }
+  </script>
+
+  <title>Tejas Agrawal | ソフトウェアエンジニア & ゲーム開発者</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,182 +45,360 @@
 </head>
 
 <body>
+  <!-- Minimal Loading Screen -->
   <div class="loading-screen" id="loadingScreen">
-    <div class="loading-counter">0</div>
-    <div class="loading-text">LOADING...</div>
+    <div class="loading-spinner"></div>
   </div>
 
-  <div class="content" id="mainContent">
-    <nav class="main-nav">
-      <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav class="main-nav" id="mainNav">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="メニュー">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-list" id="navList">
+      <li><a href="#about">
+          <span class="lang-jp inline">自己紹介</span>
+          <span class="lang-en inline">About</span>
+        </a></li>
+      <li><a href="#skills">
+          <span class="lang-jp inline">スキル</span>
+          <span class="lang-en inline">Skills</span>
+        </a></li>
+      <li><a href="#experience">
+          <span class="lang-jp inline">経歴</span>
+          <span class="lang-en inline">Experience</span>
+        </a></li>
+      <li><a href="#work">
+          <span class="lang-jp inline">作品</span>
+          <span class="lang-en inline">Work</span>
+        </a></li>
+      <li><a href="#contact">
+          <span class="lang-jp inline">お問い合わせ</span>
+          <span class="lang-en inline">Contact</span>
+        </a></li>
+      <li class="nav-divider"></li>
+      <li>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-set-lang="jp">JP</button>
+          <button class="lang-btn" data-set-lang="EN">EN</button>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
-    <div class="welcome-page" id="home">
-      <div class="slideshow-container">
-        <div class="slide-container">
-          <img src="welcome1.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome1.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome2.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome2.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome3.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome3.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome4.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome4.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome5.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome5.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome6.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome6.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome7.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome7.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome8.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome8.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome9.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome9.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome10.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome10.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome11.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome11.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
-        <div class="slide-container">
-          <img src="welcome12.jpg" class="background-slide" alt="Game development environment" loading="lazy">
-          <img src="welcome12.jpg" class="slide" alt="Game development environment" loading="lazy">
-        </div>
+  <!-- Hero -->
+  <header class="welcome-page" id="home">
+    <div class="slideshow-container">
+      <div class="slide-container">
+        <img src="welcome1.jpg" class="background-slide" alt="" fetchpriority="high">
+        <img src="welcome1.jpg" class="slide" alt="Game development environment" fetchpriority="high">
       </div>
-      <h1 class="welcome-text">Welcome to my page</h1>
+      <div class="slide-container">
+        <img src="welcome2.jpg" class="background-slide" alt="">
+        <img src="welcome2.jpg" class="slide" alt="Game development environment">
+      </div>
+      <div class="slide-container">
+        <img src="welcome3.jpg" class="background-slide" alt="">
+        <img src="welcome3.jpg" class="slide" alt="Game development environment">
+      </div>
+      <div class="slide-container">
+        <img src="welcome4.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome4.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome5.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome5.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome6.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome6.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome7.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome7.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome8.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome8.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome9.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome9.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome10.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome10.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome11.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome11.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
+      <div class="slide-container">
+        <img src="welcome12.jpg" class="background-slide" alt="" loading="lazy">
+        <img src="welcome12.jpg" class="slide" alt="Game development environment" loading="lazy">
+      </div>
     </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span class="lang-jp inline">ポートフォリオ</span>
+        <span class="lang-en inline">Portfolio</span>
+      </p>
+      <h1 class="hero-title">Tejas Agrawal</h1>
+      <h2 class="hero-subtitle">
+        <span class="lang-jp inline">ソフトウェアエンジニア / ゲーム開発者</span>
+        <span class="lang-en inline">Software Engineer & Game Developer</span>
+      </h2>
+      <p class="hero-meta">
+        <span class="lang-jp inline">IT分野のMBA · Unity & Unreal Engine · 富山県高岡市在住</span>
+        <span class="lang-en inline">MBA in IT · Unity & Unreal Engine · Based in Takaoka, Japan</span>
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">
+          <span class="lang-jp inline">作品を見る</span>
+          <span class="lang-en inline">View Projects</span>
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <span class="lang-jp inline">お問い合わせ</span>
+          <span class="lang-en inline">Contact Me</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
+  <main id="mainContent" class="content">
+    <!-- About -->
     <section class="main-section" id="about">
       <div class="about-container">
         <div class="about-image">
           <img src="profile1.jpg" alt="Tejas Agrawal - IT Engineer and Game Developer">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span class="lang-jp inline">転職活動中</span>
+            <span class="lang-en inline">Open to Work</span>
+          </div>
         </div>
         <div class="about-content">
-          <h2 class="section-heading">About Me</h2>
-          <p>
-            Hi, my name is <span class="highlight">Tejas Agrawal</span>, an aspiring IT Software Engineer and Game Developer currently based in Takaoka, Japan. My journey into tech is a bit unique—I hold an MBA in IT and a B.Com, but my passion for programming led me to graduate from Tokyo Cool Japan with a specialization in game programming.
-            <br><br>
-            I have hands-on experience building games in Unity and Unreal Engine, and I developed this portfolio website entirely from scratch using plain HTML, CSS, and JavaScript. I am highly adaptable and open to various IT domains, bringing foundational knowledge in databases like MySQL and strong logical problem-solving skills from my background in corporate auditing. Currently working at Alten Japan as a Semiconductor Equipment Engineer, I am actively building my skills to transition full-time into the IT or gaming industry. When I'm away from the keyboard, you'll find me exploring the Toyama area or watching anime (I've logged over 300 series!).
-            <br><br>
-            はじめまして！アグラワル・テジャスと申します。現在、富山県高岡市を拠点に活動しているITエンジニア志望兼ゲームクリエイターです。IT分野のMBAと商学士（B.Com）を取得していますが、プログラミングへの強い情熱から「東京クールジャパン」でゲームプログラミングを専攻し、卒業しました。
-            <br><br>
-            UnityやUnreal Engineを使った開発経験に加え、このポートフォリオサイトをプレーンなHTML/CSS/JavaScriptでゼロから構築するなど、Web技術への強い探求心があります。専門学校ではMySQLなどのデータベース基礎も習得しており、特定のIT領域にこだわらず柔軟に新しい技術を吸収する意欲を持っています。現在はアルテンジャパンで半導体装置エンジニアとして精密な業務に携わりながら、IT業界およびゲーム業界へのキャリアチェンジを目指して日々学習に励んでいます。休日は高岡周辺を散策したり、アニメを見たりして過ごしています（今まで見たアニメは300作品以上です！）。
+          <h2 class="section-heading">
+            <span class="lang-jp inline">自己紹介</span>
+            <span class="lang-en inline">About Me</span>
+          </h2>
+
+          <p class="about-hook">
+            <span class="lang-jp inline">IT分野のMBA取得。UnityとUnreal
+              Engineを使ったゲーム開発の実務経験と、HTML/CSS/JavaScriptを使ったフルスタックWeb開発のスキルを持つエンジニア。現在、半導体装置エンジニアとして勤務しながら、IT・ゲーム業界へのキャリアチェンジを目指しています。</span>
+            <span class="lang-en inline">IT Engineer with an MBA and hands-on experience in Unity, Unreal Engine, and
+              full-stack web development. Currently working as a Semiconductor Equipment Engineer while actively
+              transitioning into IT and Game Development.</span>
           </p>
+
+          <ul class="about-highlights">
+            <li>
+              <i class="fas fa-graduation-cap"></i>
+              <span class="lang-jp inline">東京クールジャパン専門学校でゲームプログラミングを専攻</span>
+              <span class="lang-en inline">Specialized in Game Programming at Tokyo Cool Japan</span>
+            </li>
+            <li>
+              <i class="fas fa-briefcase"></i>
+              <span class="lang-jp inline">アルテンジャパンで半導体装置エンジニアとして勤務中</span>
+              <span class="lang-en inline">Currently working at Alten Japan as a Semiconductor Equipment Engineer</span>
+            </li>
+            <li>
+              <i class="fas fa-rocket"></i>
+              <span class="lang-jp inline">IT・ゲーム業界へのキャリアチェンジを積極的に目指している</span>
+              <span class="lang-en inline">Actively seeking opportunities in IT and Game Development</span>
+            </li>
+            <li>
+              <i class="fas fa-language"></i>
+              <span class="lang-jp inline">英語（ネイティブ）・日本語（ビジネスレベル）のバイリンガル</span>
+              <span class="lang-en inline">Bilingual: English (Native) & Japanese (Business Level)</span>
+            </li>
+          </ul>
+
+          <div class="about-bio">
+            <div class="lang-jp">
+              <p>はじめまして！アグラワル・テジャスと申します。IT分野のMBAと商学士（B.Com）を取得していますが、プログラミングへの強い情熱から「東京クールジャパン」でゲームプログラミングを専攻し、卒業しました。
+              </p>
+              <p>UnityやUnreal
+                Engineを使った開発経験に加え、このポートフォリオサイトをプレーンなHTML/CSS/JavaScriptでゼロから構築するなど、Web技術への強い探求心があります。専門学校ではMySQLなどのデータベース基礎も習得しており、特定のIT領域にこだわらず柔軟に新しい技術を吸収する意欲を持っています。
+              </p>
+              <p>
+                現在はアルテンジャパンで半導体装置エンジニアとして精密な業務に携わりながら、IT業界およびゲーム業界へのキャリアチェンジを目指して日々学習に励んでいます。休日は高岡周辺を散策したり、アニメを見たりして過ごしています（今まで見たアニメは300作品以上です！）。
+              </p>
+            </div>
+            <div class="lang-en">
+              <p>Hi, my name is <span class="highlight">Tejas Agrawal</span>, an aspiring IT Software Engineer and Game
+                Developer currently based in Takaoka, Japan. My journey into tech is a bit unique—I hold an MBA in IT
+                and a B.Com, but my passion for programming led me to graduate from Tokyo Cool Japan with a
+                specialization in game programming.</p>
+              <p>I have hands-on experience building games in Unity and Unreal Engine, and I developed this portfolio
+                website entirely from scratch using plain HTML, CSS, and JavaScript. I am highly adaptable and open to
+                various IT domains, bringing foundational knowledge in databases like MySQL and strong logical
+                problem-solving skills from my background in corporate auditing.</p>
+              <p>Currently working at Alten Japan as a Semiconductor Equipment Engineer, I am actively building my
+                skills to transition full-time into the IT or gaming industry. When I'm away from the keyboard, you'll
+                find me exploring the Toyama area or watching anime (I've logged over 300 series!).</p>
+            </div>
+          </div>
+
           <div class="resume-wrapper">
-            <a href="Tejas_Agrawal_Resume.pdf" download="Tejas_Agrawal_CV.pdf" class="resume-btn" target="_blank">
+            <a href="Tejas_Agrawal_Resume.pdf" download="Tejas_Agrawal_CV.pdf" class="resume-btn" target="_blank"
+              rel="noopener noreferrer">
               <i class="fas fa-file-download"></i> Resume
             </a>
-            <a href="Tejas_Agrawal_Rirekisho.pdf" download="履歴書_アグラワルテジャス.pdf" class="resume-btn" target="_blank">
-              <i class="fas fa-file-download"></i> 履歴書
+            <a href="Tejas_Agrawal_Rirekisho.pdf" download="履歴書_アグラワルテジャス.pdf" class="resume-btn" target="_blank"
+              rel="noopener noreferrer">
+              <i class="fas fa-file-download"></i>
+              <span class="lang-jp inline">履歴書</span>
+              <span class="lang-en inline">履歴書</span>
             </a>
-            <a href="Tejas_Agrawal_Shokumukeirekisho.pdf" download="職務経歴書_アグラワルテジャス.pdf" class="resume-btn" target="_blank">
-              <i class="fas fa-file-download"></i> 職務経歴書
+            <a href="Tejas_Agrawal_Shokumukeirekisho.pdf" download="職務経歴書_アグラワルテジャス.pdf" class="resume-btn"
+              target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-file-download"></i>
+              <span class="lang-jp inline">職務経歴書</span>
+              <span class="lang-en inline">職務経歴書</span>
             </a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Skills -->
     <section class="main-section" id="skills">
       <div class="skills-container">
-        <h2 class="section-heading">My Skills</h2>
+        <h2 class="section-heading">
+          <span class="lang-jp inline">スキル</span>
+          <span class="lang-en inline">Skills</span>
+        </h2>
+
         <div class="skills-grid">
-
           <div class="skill-category">
-            <h3><i class="fas fa-gamepad"></i> Game Engines</h3>
-            <div class="skill-item">
-              <i class="fab fa-unity"></i>
-              <span>Unity</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="70%"></div>
+            <h3><i class="fas fa-gamepad"></i>
+              <span class="lang-jp inline">ゲームエンジン</span>
+              <span class="lang-en inline">Game Engines</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-unity"></i> Unity</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">習熟</span>
+                  <span class="lang-en inline">Proficient</span>
+                </span>
               </div>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-dice-d20"></i>
-              <span>Unreal Engine</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="65%"></div>
-              </div>
-            </div>
-
-            <h3><i class="fas fa-server"></i> Programming & DB</h3>
-            <div class="skill-item">
-              <i class="fas fa-copyright"></i>
-              <span>C++</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="50%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-cuttlefish"></i>
-              <span>C#</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="60%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <i class="fas fa-database"></i>
-              <span>MySQL</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="50%"></div>
+              <div class="skill-row">
+                <span class="skill-name"><i class="fas fa-dice-d20"></i> Unreal Engine</span>
+                <span class="skill-level comfortable">
+                  <span class="lang-jp inline">実務可</span>
+                  <span class="lang-en inline">Comfortable</span>
+                </span>
               </div>
             </div>
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-code"></i> Front End</h3>
-            <div class="skill-item">
-              <i class="fab fa-html5"></i>
-              <span>HTML</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="70%"></div>
+            <h3><i class="fas fa-code"></i>
+              <span class="lang-jp inline">プログラミング</span>
+              <span class="lang-en inline">Programming</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-cuttlefish"></i> C#</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">習熟</span>
+                  <span class="lang-en inline">Proficient</span>
+                </span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name"><i class="fas fa-copyright"></i> C++</span>
+                <span class="skill-level comfortable">
+                  <span class="lang-jp inline">実務可</span>
+                  <span class="lang-en inline">Comfortable</span>
+                </span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-js-square"></i> JavaScript</span>
+                <span class="skill-level comfortable">
+                  <span class="lang-jp inline">実務可</span>
+                  <span class="lang-en inline">Comfortable</span>
+                </span>
               </div>
             </div>
-            <div class="skill-item">
-              <i class="fab fa-css3-alt"></i>
-              <span>CSS</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="65%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <i class="fab fa-js-square"></i>
-              <span>JavaScript</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="60%"></div>
-              </div>
-            </div>
+          </div>
 
-            <h3><i class="fas fa-code-branch"></i> Version Control</h3>
-            <div class="skill-item">
-              <i class="fab fa-git-alt"></i>
-              <span>Git</span>
-              <div class="progress-bar">
-                <div class="progress" data-width="70%"></div>
+          <div class="skill-category">
+            <h3><i class="fas fa-laptop-code"></i>
+              <span class="lang-jp inline">Web開発</span>
+              <span class="lang-en inline">Web Development</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">習熟</span>
+                  <span class="lang-en inline">Proficient</span>
+                </span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">習熟</span>
+                  <span class="lang-en inline">Proficient</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-database"></i>
+              <span class="lang-jp inline">データベース</span>
+              <span class="lang-en inline">Database</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name"><i class="fas fa-database"></i> MySQL</span>
+                <span class="skill-level comfortable">
+                  <span class="lang-jp inline">実務可</span>
+                  <span class="lang-en inline">Comfortable</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-code-branch"></i>
+              <span class="lang-jp inline">ツール</span>
+              <span class="lang-en inline">Tools</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">習熟</span>
+                  <span class="lang-en inline">Proficient</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-language"></i>
+              <span class="lang-jp inline">言語</span>
+              <span class="lang-en inline">Languages</span>
+            </h3>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name">日本語</span>
+                <span class="skill-level comfortable">
+                  <span class="lang-jp inline">ビジネスレベル</span>
+                  <span class="lang-en inline">Business</span>
+                </span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">English</span>
+                <span class="skill-level proficient">
+                  <span class="lang-jp inline">ネイティブ</span>
+                  <span class="lang-en inline">Native</span>
+                </span>
               </div>
             </div>
           </div>
@@ -200,68 +406,301 @@
       </div>
     </section>
 
+    <!-- Experience -->
+    <section class="main-section" id="experience">
+      <div class="experience-container">
+        <h2 class="section-heading">
+          <span class="lang-jp inline">経歴</span>
+          <span class="lang-en inline">Experience</span>
+        </h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="timeline-date">
+                  <span class="lang-jp inline">現在</span>
+                  <span class="lang-en inline">Present</span>
+                </span>
+                <span class="timeline-location">Takaoka, Japan</span>
+              </div>
+              <h3>Alten Japan</h3>
+              <p class="timeline-role">
+                <span class="lang-jp inline">半導体装置エンジニア</span>
+                <span class="lang-en inline">Semiconductor Equipment Engineer</span>
+              </p>
+              <ul class="timeline-details">
+                <li>
+                  <span class="lang-jp inline">半導体製造装置の導入、メンテナンス、トラブルシューティング</span>
+                  <span class="lang-en inline">Equipment installation, maintenance, and troubleshooting for
+                    semiconductor manufacturing</span>
+                </li>
+                <li>
+                  <span class="lang-jp inline">技術文書の作成と管理</span>
+                  <span class="lang-en inline">Technical documentation creation and management</span>
+                </li>
+                <li>
+                  <span class="lang-jp inline">顧客対応とプロジェクト調整</span>
+                  <span class="lang-en inline">Client communication and cross-functional project coordination</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="timeline-date">
+                  <span class="lang-jp inline">卒業</span>
+                  <span class="lang-en inline">Graduated</span>
+                </span>
+                <span class="timeline-location">Tokyo, Japan</span>
+              </div>
+              <h3>Tokyo Cool Japan</h3>
+              <p class="timeline-role">
+                <span class="lang-jp inline">ゲームプログラミング専攻</span>
+                <span class="lang-en inline">Game Programming Major</span>
+              </p>
+              <ul class="timeline-details">
+                <li>
+                  <span class="lang-jp inline">UnityとUnreal Engineを使用したゲーム開発</span>
+                  <span class="lang-en inline">Game development using Unity and Unreal Engine</span>
+                </li>
+                <li>
+                  <span class="lang-jp inline">C#、C++、MySQLなどの技術を習得</span>
+                  <span class="lang-en inline">Acquired skills in C#, C++, MySQL, and more</span>
+                </li>
+                <li>
+                  <span class="lang-jp inline">個人プロジェクトとチーム開発の両方に従事</span>
+                  <span class="lang-en inline">Engaged in both individual projects and team development</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="timeline-date">MBA / B.Com</span>
+              </div>
+              <h3>
+                <span class="lang-jp inline">大学・大学院</span>
+                <span class="lang-en inline">University</span>
+              </h3>
+              <p class="timeline-role">
+                <span class="lang-jp inline">IT分野のMBA、商学士（B.Com）</span>
+                <span class="lang-en inline">MBA in IT, Bachelor of Commerce</span>
+              </p>
+              <ul class="timeline-details">
+                <li>
+                  <span class="lang-jp inline">監査法人での業務経験により、論理的思考と問題解決能力を培う</span>
+                  <span class="lang-en inline">Developed logical thinking and problem-solving through auditing
+                    experience</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work -->
     <section class="main-section" id="work">
       <div class="work-container">
-        <h2 class="section-heading">My Work</h2>
-        <div class="games-wrapper">
-          <div class="games-scroll">
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
+        <h2 class="section-heading">
+          <span class="lang-jp inline">作品</span>
+          <span class="lang-en inline">Work</span>
+        </h2>
+
+        <div class="projects-grid">
+          <article class="project-card featured">
+            <div class="project-image">
               <img src="game1.png" alt="Wilderness Sniper - First Person Shooter Game">
-            </a>
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
-              <img src="game1.png" alt="Wilderness Sniper - First Person Shooter Game">
-            </a>
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
-              <img src="game1.png" alt="Wilderness Sniper Gameplay Snippet">
-            </a>
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
-              <img src="game1.png" alt="Wilderness Sniper Gameplay Snippet">
-            </a>
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
-              <img src="game1.png" alt="Wilderness Sniper Gameplay Snippet">
-            </a>
-            <a href="https://alk3yn.itch.io/wilderness-sniper" class="game-item" target="_blank">
-              <img src="game1.png" alt="Wilderness Sniper Gameplay Snippet">
-            </a>
+              <div class="project-image-overlay">
+                <a href="https://alk3yn.itch.io/wilderness-sniper" target="_blank" rel="noopener noreferrer"
+                  class="project-play-btn">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-header">
+                <h3>Wilderness Sniper</h3>
+                <span class="project-type">PC Game</span>
+              </div>
+              <p class="project-desc">
+                <span
+                  class="lang-jp inline">Unityで開発した一人称視点（FPS）のスナイパーゲーム。美しい自然環境を舞台に、戦術的な狙撃ミッションを楽しめます。プレイヤーの隐蔽、風の影響、弾道計算などを実装しました。</span>
+                <span class="lang-en inline">A first-person sniper game developed in Unity. Enjoy tactical sniper
+                  missions set in beautiful wilderness environments. Features player stealth mechanics, wind effects,
+                  and ballistic calculations.</span>
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Unity</span>
+                <span class="project-tag">C#</span>
+                <span class="project-tag">3D FPS</span>
+                <span class="project-tag">itch.io</span>
+              </div>
+              <div class="project-links">
+                <a href="https://alk3yn.itch.io/wilderness-sniper" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-primary btn-small">
+                  <i class="fas fa-gamepad"></i>
+                  <span class="lang-jp inline">プレイする</span>
+                  <span class="lang-en inline">Play Game</span>
+                </a>
+                <a href="https://github.com/tejas-5" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-secondary btn-small">
+                  <i class="fab fa-github"></i>
+                  <span class="lang-jp inline">ソースコード</span>
+                  <span class="lang-en inline">Source Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <div class="project-coming-soon">
+            <i class="fas fa-tools"></i>
+            <p>
+              <span class="lang-jp inline">新しいプロジェクトを開発中です。もうしばらくお待ちください。</span>
+              <span class="lang-en inline">More projects in development. Stay tuned.</span>
+            </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Contact -->
     <section class="main-section" id="contact">
       <div class="contact-container">
-        <h2 class="section-heading">Contact Me</h2>
-        <div class="social-links">
-          <a href="https://www.instagram.com/the.indian.introvert_/" class="social-item" target="_blank">
-            <i class="fab fa-instagram"></i>
-            <span>Instagram</span>
-          </a>
-          <a href="https://wa.me/818041255955" class="social-item" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i>
-            <span>Whatsapp</span>
-          </a>
-          <a href="mailto:tejas.agarwal.5@gmail.com" class="social-item" target="_blank">
-            <i class="fas fa-envelope"></i>
-            <span>Gmail</span>
-          </a>
-          <a href="https://line.me/ti/p/rDzdAlh-gL" class="social-item" target="_blank">
-            <i class="fa-brands fa-line"></i>
-            <span>Line</span>
-          </a>
-          <a href="https://github.com/tejas-5" class="social-item" target="_blank">
-            <i class="fa-brands fa-github"></i>
-            <span>GitHub</span>
-          </a>
+        <h2 class="section-heading">
+          <span class="lang-jp inline">お問い合わせ</span>
+          <span class="lang-en inline">Contact</span>
+        </h2>
+
+        <div class="contact-grid">
+          <div class="contact-form-wrapper">
+            <!-- Formspree AJAX form -->
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="name">
+                  <span class="lang-jp inline">お名前</span>
+                  <span class="lang-en inline">Name</span>
+                </label>
+                <input type="text" id="name" name="name" data-fs-field required />
+                <span class="field-error" data-fs-error="name"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  <span class="lang-jp inline">メールアドレス</span>
+                  <span class="lang-en inline">Email</span>
+                </label>
+                <input type="email" id="email" name="email" data-fs-field required />
+                <span class="field-error" data-fs-error="email"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="message">
+                  <span class="lang-jp inline">メッセージ</span>
+                  <span class="lang-en inline">Message</span>
+                </label>
+                <textarea id="message" name="message" rows="5" data-fs-field required></textarea>
+                <span class="field-error" data-fs-error="message"></span>
+              </div>
+
+              <!-- Form-level error -->
+              <div class="form-error" data-fs-error></div>
+
+              <button type="submit" class="submit-btn" data-fs-submit-btn>
+                <span class="lang-jp inline">送信する</span>
+                <span class="lang-en inline">Send Message</span>
+              </button>
+            </form>
+
+            <!-- Success message -->
+            <div class="form-success" data-fs-success>
+              <i class="fas fa-check-circle"></i>
+              <p class="lang-jp">メッセージを送信しました。ありがとうございます！</p>
+              <p class="lang-en">Message sent. Thank you!</p>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <h3>
+              <span class="lang-jp inline">その他の連絡方法</span>
+              <span class="lang-en inline">Other Ways to Connect</span>
+            </h3>
+            <div class="social-links-vertical">
+              <a href="https://www.instagram.com/the.indian.introvert_/" class="social-card" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                <div>
+                  <span class="social-name">Instagram</span>
+                  <span class="social-handle">@the.indian.introvert_</span>
+                </div>
+              </a>
+              <a href="https://wa.me/818041255955" class="social-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                  <span class="social-name">WhatsApp</span>
+                  <span class="social-handle">+81 80-4125-5955</span>
+                </div>
+              </a>
+              <a href="mailto:tejas.agarwal.5@gmail.com" class="social-card">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <span class="social-name">Gmail</span>
+                  <span class="social-handle">tejas.agarwal.5@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://line.me/ti/p/rDzdAlh-gL" class="social-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-line"></i>
+                <div>
+                  <span class="social-name">LINE</span>
+                  <span class="social-handle">rDzdAlh-gL</span>
+                </div>
+              </a>
+              <a href="https://github.com/tejas-5" class="social-card" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <div>
+                  <span class="social-name">GitHub</span>
+                  <span class="social-handle">@tejas-5</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <button class="scroll-top" id="scrollTop">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-  </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© 2026 Tejas Agrawal. All rights reserved.</p>
+      <p class="footer-built">
+        <span class="lang-jp inline">HTML, CSS, JavaScriptでゼロから構築</span>
+        <span class="lang-en inline">Built from scratch with HTML, CSS & JavaScript</span>
+      </p>
+    </footer>
+  </main>
+
+  <button class="scroll-top" id="scrollTop" aria-label="トップに戻る">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script src="app.js"></script>
+  <script>
+    window.formspree = window.formspree || function () {
+      (formspree.q = formspree.q || []).push(arguments);
+    };
+    formspree('initForm', {
+      formElement: '#contactForm',
+      formId: 'xgojkryg'
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 
 </html>

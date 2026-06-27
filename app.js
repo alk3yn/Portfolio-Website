@@ -1,4 +1,98 @@
-// Enable smooth scrolling for anchor links
+// ─── LANGUAGE TOGGLE ───────────────────────────────────────────────────────
+const langBtns = document.querySelectorAll('.lang-btn');
+const htmlEl = document.documentElement;
+
+function setLanguage(lang) {
+    htmlEl.setAttribute('data-lang', lang);
+    htmlEl.setAttribute('lang', lang === 'jp' ? 'ja' : 'en');
+    langBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-set-lang').toLowerCase() === lang);
+    });
+}
+
+langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-set-lang').toLowerCase();
+        setLanguage(lang);
+    });
+});
+
+// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const navList = document.getElementById('navList');
+
+if (mobileMenuToggle && navList) {
+    mobileMenuToggle.addEventListener('click', () => {
+        navList.classList.toggle('open');
+        const icon = mobileMenuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when clicking a link
+    navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('open');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+}
+
+// ─── LOADING SCREEN ──────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => loadingScreen.remove(), 400);
+        }, 300);
+    }
+    initializeSlideshow();
+});
+
+// ─── SLIDESHOW ───────────────────────────────────────────────────────────────
+function initializeSlideshow() {
+    const slideContainers = document.querySelectorAll('.slide-container');
+    if (slideContainers.length === 0) return;
+
+    let currentIndex = Math.floor(Math.random() * slideContainers.length);
+
+    const activateSlide = (index) => {
+        const bg = slideContainers[index].querySelector('.background-slide');
+        const slide = slideContainers[index].querySelector('.slide');
+        if (bg) bg.classList.add('active');
+        if (slide) slide.classList.add('active');
+    };
+
+    const deactivateSlide = (index) => {
+        const bg = slideContainers[index].querySelector('.background-slide');
+        const slide = slideContainers[index].querySelector('.slide');
+        if (bg) bg.classList.remove('active');
+        if (slide) slide.classList.remove('active');
+    };
+
+    activateSlide(currentIndex);
+
+    const transitionSlide = () => {
+        deactivateSlide(currentIndex);
+        currentIndex = (currentIndex + 1) % slideContainers.length;
+        activateSlide(currentIndex);
+    };
+
+    let slideInterval = setInterval(transitionSlide, 5000);
+    const container = document.querySelector('.slideshow-container');
+
+    if (container) {
+        container.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        container.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(transitionSlide, 5000);
+        });
+    }
+}
+
+// ─── SMOOTH SCROLL ───────────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -9,231 +103,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Show or hide the scroll-to-top button based on scroll position
+// ─── SCROLL-TO-TOP ───────────────────────────────────────────────────────────
 const scrollTopButton = document.getElementById('scrollTop');
 if (scrollTopButton) {
     window.addEventListener('scroll', () => {
-        scrollTopButton.classList.toggle('show', window.scrollY > 0);
+        scrollTopButton.classList.toggle('show', window.scrollY > 400);
     });
     scrollTopButton.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
-// Preload images used in the slideshow for smoother transitions
-function preloadImages() {
-    const images = document.querySelectorAll('.slide');
-    images.forEach(img => {
-        const src = img.getAttribute('src');
-        if (src) {
-            const image = new Image();
-            image.src = src;
-        }
+// ─── NAV BACKGROUND ON SCROLL ────────────────────────────────────────────────
+const mainNav = document.getElementById('mainNav');
+if (mainNav) {
+    window.addEventListener('scroll', () => {
+        mainNav.classList.toggle('scrolled', window.scrollY > 50);
     });
 }
-
-// Handles slideshow functionality safely without breaking the DOM
-function initializeSlideshow() {
-    try {
-        const slideContainers = document.querySelectorAll('.slide-container');
-        if (slideContainers.length === 0) return;
-
-        let currentIndex = Math.floor(Math.random() * slideContainers.length);
-
-        const activateSlide = (index) => {
-            slideContainers[index].querySelector('.background-slide').classList.add('active');
-            slideContainers[index].querySelector('.slide').classList.add('active');
-        };
-
-        activateSlide(currentIndex);
-
-        const transitionSlide = () => {
-            const currentContainer = slideContainers[currentIndex];
-            currentContainer.querySelector('.background-slide').classList.remove('active');
-            currentContainer.querySelector('.slide').classList.remove('active');
-
-            currentIndex = (currentIndex + 1) % slideContainers.length;
-
-            const nextContainer = slideContainers[currentIndex];
-            nextContainer.querySelector('.background-slide').classList.add('active');
-            nextContainer.querySelector('.slide').classList.add('active');
-        };
-
-        let slideInterval = setInterval(transitionSlide, 4000);
-        const container = document.querySelector('.slideshow-container');
-
-        container.addEventListener('mouseenter', () => clearInterval(slideInterval));
-        container.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(transitionSlide, 4000);
-        });
-    } catch (error) {
-        console.error("Error initializing slideshow:", error);
-    }
-}
-
-// Ensure the page actually waits for resources to load instead of using a fake timer
-window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loadingScreen');
-    const counter = document.querySelector('.loading-counter');
-    let count = 0;
-
-    const finishLoading = setInterval(() => {
-        if (count < 100) {
-            count += Math.floor(Math.random() * 10) + 5;
-            if (count > 100) count = 100;
-            counter.textContent = count;
-        } else {
-            clearInterval(finishLoading);
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.remove();
-                document.getElementById('mainContent').classList.add('content-loaded');
-                initializeSlideshow();
-            }, 800);
-        }
-    }, 30);
-});
-
-// Run image preloading and scroll init after DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    preloadImages();
-    initializeWorkScroll();
-});
-
-// ─── MARQUEE & DRAG SCROLL LOGIC ────────────────────────────────────────────
-
-let isDown = false;
-let startX;
-let scrollLeft;
-let isDragging = false;
-let isHovered = false;
-
-function initializeWorkScroll() {
-    // Query inside the function so the DOM is guaranteed to exist
-    const gamesScroll = document.querySelector('.games-scroll');
-    if (!gamesScroll) return;
-
-    const originalChildren = Array.from(gamesScroll.children);
-    if (originalChildren.length === 0) return;
-
-    // Clone enough times to fill the strip and allow seamless looping
-    // Two full sets of clones is sufficient for a continuous loop
-    originalChildren.forEach(child => gamesScroll.appendChild(child.cloneNode(true)));
-    originalChildren.forEach(child => gamesScroll.appendChild(child.cloneNode(true)));
-
-    // ── Drag / touch controls ──────────────────────────────────────────────
-
-    gamesScroll.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - gamesScroll.offsetLeft;
-        scrollLeft = gamesScroll.scrollLeft;
-        isDragging = true;
-        gamesScroll.classList.add('dragging');
-    });
-
-    gamesScroll.addEventListener('mouseleave', () => {
-        isHovered = false;
-        isDown = false;
-        isDragging = false;
-        gamesScroll.classList.remove('dragging');
-    });
-
-    gamesScroll.addEventListener('mouseenter', () => { isHovered = true; });
-
-    gamesScroll.addEventListener('mouseup', () => {
-        isDown = false;
-        isDragging = false;
-        gamesScroll.classList.remove('dragging');
-    });
-
-    gamesScroll.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - gamesScroll.offsetLeft;
-        const walk = (x - startX) * 2;
-        gamesScroll.scrollLeft = scrollLeft - walk;
-    });
-
-    gamesScroll.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - gamesScroll.offsetLeft;
-        scrollLeft = gamesScroll.scrollLeft;
-        isDragging = true;
-    });
-
-    gamesScroll.addEventListener('touchend', () => {
-        isDown = false;
-        isDragging = false;
-    });
-
-    gamesScroll.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - gamesScroll.offsetLeft;
-        const walk = (x - startX) * 2;
-        gamesScroll.scrollLeft = scrollLeft - walk;
-    });
-
-    // ── Auto-scroll with seamless loop ────────────────────────────────────
-    // Wait two frames so the browser has laid out all the cloned elements
-    // and offsetLeft / scrollWidth values are accurate.
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            // The loop point is exactly one full set of original items wide.
-            // When we reach that offset we silently jump back to 0.
-            const singleSetWidth = originalChildren.reduce((total, child) => {
-                const style = getComputedStyle(child);
-                const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-                return total + child.offsetWidth + margin;
-            }, 0);
-
-            // Also account for the gap set via CSS (grab it from the flex gap)
-            const gap = parseFloat(getComputedStyle(gamesScroll).gap) || 30;
-            const jumpPoint = singleSetWidth + gap * originalChildren.length;
-
-            function autoScroll() {
-                if (!isHovered && !isDragging) {
-                    gamesScroll.scrollLeft += 1;
-
-                    // Seamlessly jump back once we've scrolled one full set
-                    if (gamesScroll.scrollLeft >= jumpPoint) {
-                        gamesScroll.scrollLeft -= jumpPoint;
-                    }
-                }
-                requestAnimationFrame(autoScroll);
-            }
-
-            requestAnimationFrame(autoScroll);
-        });
-    });
-}
-
 
 // ─── SCROLL-TRIGGERED ANIMATIONS ────────────────────────────────────────────
-
 function initScrollAnimations() {
-    // Sections fade in when they enter the viewport
     const sections = document.querySelectorAll('.main-section');
-    const progressBars = document.querySelectorAll('.progress');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-
-            // Fade-in the section
-            entry.target.classList.add('visible');
-
-            // If it's the skills section, animate each progress bar to its target width
-            const bars = entry.target.querySelectorAll('.progress');
-            bars.forEach(bar => {
-                const target = bar.style.getPropertyValue('--target-width') || bar.getAttribute('data-width');
-                if (target) {
-                    requestAnimationFrame(() => { bar.style.width = target; });
-                }
-            });
-
-            observer.unobserve(entry.target);
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     sections.forEach(section => observer.observe(section));
 }
