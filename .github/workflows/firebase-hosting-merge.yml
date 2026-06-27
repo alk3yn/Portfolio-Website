@@ -6,20 +6,24 @@ on:
   push:
     branches:
       - main
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create build timestamp
-        run: echo "$(date)" > .build-timestamp && cat .build-timestamp
+      - name: Ensure content change for deploy
+        run: |
+          echo "Build: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > .build-info.txt
+          echo "Commit: ${{ github.sha }}" >> .build-info.txt
+          cat .build-info.txt
+      
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEJAS_AGRAWAL }}
           channelId: live
           projectId: tejas-agrawal
-          force: true
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
