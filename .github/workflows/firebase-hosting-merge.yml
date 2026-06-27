@@ -23,7 +23,6 @@ jobs:
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEJAS_AGRAWAL }}
-          channelId: live
           projectId: tejas-agrawal
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
