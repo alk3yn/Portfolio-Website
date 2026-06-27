@@ -93,10 +93,7 @@ window.addEventListener('load', () => {
             setTimeout(() => loadingScreen.remove(), 400);
         }, 300);
     }
-    if (!isPreview) {
-        initializeSlideshow();
-    }
-    resizeSitePreview(); // <-- ADD THIS
+    initializeSlideshow();
 });
 
 // ─── SLIDESHOW ───────────────────────────────────────────────────────────────
@@ -256,18 +253,3 @@ if (contactForm) {
         // This just provides visual feedback while loading
     });
 }
-
-function resizeSitePreview() {
-    const wrappers = document.querySelectorAll('.site-preview-wrapper');
-    wrappers.forEach(wrapper => {
-        const iframe = wrapper.querySelector('iframe');
-        if (!iframe) return;
-
-        const scale = wrapper.clientWidth / 1280;
-        const scaledHeight = 800 * scale;
-
-        iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        wrapper.style.height = `${scaledHeight}px`;
-    });
-}
-window.addEventListener('resize', resizeSitePreview);
