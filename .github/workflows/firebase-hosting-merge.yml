@@ -13,11 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ensure content change for deploy
+      - name: Deploy to Firebase
         run: |
-          echo "Build: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > .build-info.txt
-          echo "Commit: ${{ github.sha }}" >> .build-info.txt
-          cat .build-info.txt
+          npx firebase-tools deploy --only hosting --project tejas-agrawal --json || \
+          grep -q "is the current active version" output.json && exit 0 || exit 1
       
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
