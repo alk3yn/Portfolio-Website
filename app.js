@@ -1,8 +1,3 @@
-const isPreview = new URLSearchParams(window.location.search).has('preview');
-if (isPreview) {
-    document.body.classList.add('preview-mode');
-}
-
 // ─── LANGUAGE TOGGLE ───────────────────────────────────────────────────────
 const langBtns = document.querySelectorAll('.lang-btn');
 const htmlEl = document.documentElement;
@@ -267,9 +262,12 @@ function resizeSitePreview() {
     wrappers.forEach(wrapper => {
         const iframe = wrapper.querySelector('iframe');
         if (!iframe) return;
+
         const scale = wrapper.clientWidth / 1280;
-        iframe.style.transform = `scale(${scale})`;
-        wrapper.style.height = `${800 * scale}px`;
+        const scaledHeight = 800 * scale;
+
+        iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        wrapper.style.height = `${scaledHeight}px`;
     });
 }
 window.addEventListener('resize', resizeSitePreview);
