@@ -1,3 +1,8 @@
+const isPreview = new URLSearchParams(window.location.search).has('preview');
+if (isPreview) {
+    document.body.classList.add('preview-mode');
+}
+
 // ─── LANGUAGE TOGGLE ───────────────────────────────────────────────────────
 const langBtns = document.querySelectorAll('.lang-btn');
 const htmlEl = document.documentElement;
@@ -93,7 +98,10 @@ window.addEventListener('load', () => {
             setTimeout(() => loadingScreen.remove(), 400);
         }, 300);
     }
-    initializeSlideshow();
+    if (!isPreview) {
+        initializeSlideshow();
+    }
+    resizeSitePreview(); // <-- ADD THIS
 });
 
 // ─── SLIDESHOW ───────────────────────────────────────────────────────────────
@@ -253,3 +261,15 @@ if (contactForm) {
         // This just provides visual feedback while loading
     });
 }
+
+function resizeSitePreview() {
+    const wrappers = document.querySelectorAll('.site-preview-wrapper');
+    wrappers.forEach(wrapper => {
+        const iframe = wrapper.querySelector('iframe');
+        if (!iframe) return;
+        const scale = wrapper.clientWidth / 1280;
+        iframe.style.transform = `scale(${scale})`;
+        wrapper.style.height = `${800 * scale}px`;
+    });
+}
+window.addEventListener('resize', resizeSitePreview);

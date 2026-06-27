@@ -1354,6 +1354,7 @@ a {
 
 /* ─── PRINT STYLES ─────────────────────────────────────────────────────────── */
 @media print {
+
     .main-nav,
     .scroll-top,
     .loading-screen,
@@ -1574,6 +1575,138 @@ textarea[aria-invalid="true"] {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none !important;
+}
+
+/* ─── LIVE SITE PREVIEW (Browser Mockup) ────────────────────────────────── */
+.site-preview-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: var(--bg);
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.browser-chrome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.browser-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.browser-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.browser-dots span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.browser-dots span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.browser-dots span:nth-child(3) {
+    background: #27c93f;
+}
+
+.browser-url {
+    flex: 1;
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.site-preview-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.site-preview-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 800px;
+    border: none;
+    transform-origin: 0 0;
+    pointer-events: none;
+    /* lets the hover overlay work; remove if you want full interactivity */
+}
+
+/* ─── PREVIEW MODE (inside iframe) ──────────────────────────────────────── */
+body.preview-mode .main-nav,
+body.preview-mode .scroll-top,
+body.preview-mode .loading-screen,
+body.preview-mode .site-footer,
+body.preview-mode .content,
+body.preview-mode #langAnnounce {
+    display: none !important;
+}
+
+body.preview-mode {
+    overflow: hidden;
+}
+
+body.preview-mode .welcome-page {
+    height: 100vh;
+    min-height: unset;
+    padding: 0;
+}
+
+body.preview-mode .hero-content {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+body.preview-mode .hero-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    margin-bottom: 8px;
+}
+
+body.preview-mode .hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    margin-bottom: 12px;
+}
+
+body.preview-mode .hero-meta {
+    font-size: 0.8em;
+    margin-bottom: 0;
+}
+
+body.preview-mode .hero-cta,
+body.preview-mode .hero-eyebrow {
+    display: none;
+}
+
+body.preview-mode .slideshow-container {
+    display: none;
+}
+
+body.preview-mode .hero-overlay {
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 @media (max-width: 480px) {
