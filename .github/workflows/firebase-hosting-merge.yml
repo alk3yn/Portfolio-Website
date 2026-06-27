@@ -19,18 +19,18 @@ jobs:
           echo "Commit: ${{ github.sha }}" >> .build-info.txt
           cat .build-info.txt
 
-      - name: Deploy to Firebase Hosting
-        # Firebase Hosting returns an error when the content to deploy is
-        # byte-for-byte identical to what's already live (i.e. nothing
-        # actually changed). That's a no-op, not a real failure, so we
-        # don't want it to turn this job red. Genuine deploy errors
-        # (bad credentials, quota, broken firebase.json, etc.) will still
-        # show up clearly in this step's logs even though the job won't fail.
+      - name: Deploy to Firebase Hosting (live)
+        # channelId: live tells the action to deploy straight to the live
+        # site instead of creating a temporary preview channel.
+        # continue-on-error only ignores the harmless "no changes to deploy"
+        # case below — genuine failures still fail the job.
+        id: deploy
         continue-on-error: true
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEJAS_AGRAWAL }}
           projectId: tejas-agrawal
+          channelId: live
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
