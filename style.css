@@ -371,14 +371,14 @@ a {
     font-family: var(--font-display);
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-weight: 400;
-    color: var(--text-muted);
+    color: var(--cyan);
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
 
 .hero-meta {
     font-size: 0.95em;
-    color: var(--text-muted);
+    color: var(--cyan);
     margin-bottom: 32px;
     letter-spacing: 0.5px;
 }
@@ -1354,6 +1354,7 @@ a {
 
 /* ─── PRINT STYLES ─────────────────────────────────────────────────────────── */
 @media print {
+
     .main-nav,
     .scroll-top,
     .loading-screen,
@@ -1576,6 +1577,15 @@ textarea[aria-invalid="true"] {
     transform: none !important;
 }
 
+.project-card:not(:has(.project-image)) .project-content {
+    padding: 40px;
+    border-left: 3px solid var(--cyan);
+}
+
+.project-card:not(:has(.project-image)) {
+    grid-template-columns: 1fr;
+}
+
 @media (max-width: 480px) {
     .resume-wrapper {
         flex-direction: column;
@@ -1593,5 +1603,98 @@ textarea[aria-invalid="true"] {
     .project-links .btn {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* ─── PROJECT TECH BREAKDOWN ─────────────────────────────────────────────── */
+.project-tech-breakdown {
+    background: rgba(0, 229, 229, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+}
+
+.project-tech-breakdown h4 {
+    font-family: var(--font-display);
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
+.project-tech-breakdown ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.project-tech-breakdown li {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.project-tech-breakdown li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+    font-weight: 700;
+}
+
+.project-tech-breakdown li strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* ─── PROJECT CARD GRID ADJUSTMENTS ────────────────────────────────────────── */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.project-card.featured {
+    grid-template-columns: 1.3fr 1fr;
+}
+
+/* For non-featured cards, make them side by side on desktop */
+.project-card:not(.featured) {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Adjust image height for smaller cards */
+.project-card:not(.featured) .project-image {
+    min-height: 240px;
+}
+
+/* ─── RESPONSIVE PROJECT CARDS ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+
+    .project-card,
+    .project-card.featured,
+    .project-card:not(.featured) {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        min-height: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-tech-breakdown {
+        padding: 12px 16px;
+    }
+
+    .project-tech-breakdown li {
+        font-size: 0.82em;
     }
 }
