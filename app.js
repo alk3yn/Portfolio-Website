@@ -11,20 +11,16 @@ function setLanguage(lang) {
         btn.classList.toggle('active', isActive);
         btn.setAttribute('aria-pressed', isActive);
     });
-    // Announce language change to screen readers
     if (langAnnounce) {
         langAnnounce.textContent = lang === 'jp' ? '日本語に切り替えました' : 'Switched to English';
     }
 }
 
 langBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-set-lang').toLowerCase();
-        setLanguage(lang);
-    });
+    btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-set-lang').toLowerCase()));
 });
 
-// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+// ─── MOBILE MENU ───────────────────────────────────────────────────────────
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navList = document.getElementById('navList');
 
@@ -33,10 +29,7 @@ function closeMobileMenu() {
     navList.classList.remove('open');
     if (mobileMenuToggle) {
         const icon = mobileMenuToggle.querySelector('i');
-        if (icon) {
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        }
+        if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
     }
 }
@@ -46,158 +39,119 @@ function openMobileMenu() {
     navList.classList.add('open');
     if (mobileMenuToggle) {
         const icon = mobileMenuToggle.querySelector('i');
-        if (icon) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        }
+        if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
         mobileMenuToggle.setAttribute('aria-expanded', 'true');
     }
 }
 
 if (mobileMenuToggle && navList) {
     mobileMenuToggle.addEventListener('click', () => {
-        const isOpen = navList.classList.contains('open');
-        if (isOpen) {
-            closeMobileMenu();
-        } else {
-            openMobileMenu();
-        }
+        navList.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
     });
-
-    // Close menu when clicking a link
-    navList.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
+    navList.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
 }
 
-// Close mobile menu on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeMobileMenu();
-    }
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileMenu(); });
 
-// Close mobile menu when resizing to desktop
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        closeMobileMenu();
-    }
-});
-
-// ─── LOADING SCREEN ──────────────────────────────────────────────────────────
+// ─── LOADING SCREEN ────────────────────────────────────────────────────────
 window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loadingScreen');
-    if (loadingScreen) {
+    const ls = document.getElementById('loadingScreen');
+    if (ls) {
         setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-            setTimeout(() => loadingScreen.remove(), 400);
+            ls.classList.add('hidden');
+            setTimeout(() => ls.remove(), 500);
         }, 300);
     }
     initializeSlideshow();
 });
 
-// ─── SLIDESHOW ───────────────────────────────────────────────────────────────
+// ─── SLIDESHOW ─────────────────────────────────────────────────────────────
 let slideInterval = null;
 
 function initializeSlideshow() {
     try {
-        const slideContainers = document.querySelectorAll('.slide-container');
-        if (slideContainers.length === 0) return;
+        const containers = document.querySelectorAll('.slide-container');
+        if (!containers.length) return;
 
-        // Respect prefers-reduced-motion
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-            // Show first slide only, no animation
-            const firstBg = slideContainers[0].querySelector('.background-slide');
-            const firstSlide = slideContainers[0].querySelector('.slide');
-            if (firstBg) firstBg.classList.add('active');
-            if (firstSlide) firstSlide.classList.add('active');
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+            const bg = containers[0].querySelector('.background-slide');
+            const sl = containers[0].querySelector('.slide');
+            if (bg) bg.classList.add('active');
+            if (sl) sl.classList.add('active');
             return;
         }
 
-        let currentIndex = Math.floor(Math.random() * slideContainers.length);
+        let idx = Math.floor(Math.random() * containers.length);
 
-        const activateSlide = (index) => {
-            const container = slideContainers[index];
-            if (!container) return;
-            const bg = container.querySelector('.background-slide');
-            const slide = container.querySelector('.slide');
+        const activate = i => {
+            const c = containers[i];
+            if (!c) return;
+            const bg = c.querySelector('.background-slide');
+            const sl = c.querySelector('.slide');
             if (bg) bg.classList.add('active');
-            if (slide) slide.classList.add('active');
+            if (sl) sl.classList.add('active');
         };
-
-        const deactivateSlide = (index) => {
-            const container = slideContainers[index];
-            if (!container) return;
-            const bg = container.querySelector('.background-slide');
-            const slide = container.querySelector('.slide');
+        const deactivate = i => {
+            const c = containers[i];
+            if (!c) return;
+            const bg = c.querySelector('.background-slide');
+            const sl = c.querySelector('.slide');
             if (bg) bg.classList.remove('active');
-            if (slide) slide.classList.remove('active');
+            if (sl) sl.classList.remove('active');
         };
 
-        activateSlide(currentIndex);
+        activate(idx);
 
-        const transitionSlide = () => {
-            deactivateSlide(currentIndex);
-            currentIndex = (currentIndex + 1) % slideContainers.length;
-            activateSlide(currentIndex);
+        const transition = () => {
+            deactivate(idx);
+            idx = (idx + 1) % containers.length;
+            activate(idx);
         };
 
-        slideInterval = setInterval(transitionSlide, 5000);
-        const container = document.querySelector('.slideshow-container');
+        slideInterval = setInterval(transition, 5000);
 
-        if (container) {
-            container.addEventListener('mouseenter', () => {
-                if (slideInterval) clearInterval(slideInterval);
-            });
-            container.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(transitionSlide, 5000);
-            });
+        const wrapper = document.querySelector('.slideshow-container');
+        if (wrapper) {
+            wrapper.addEventListener('mouseenter', () => { if (slideInterval) clearInterval(slideInterval); });
+            wrapper.addEventListener('mouseleave', () => { slideInterval = setInterval(transition, 5000); });
         }
-
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            if (slideInterval) clearInterval(slideInterval);
-        });
-    } catch (error) {
-        console.error('Slideshow initialization failed:', error);
-        // Fallback: show first slide
-        const firstContainer = document.querySelector('.slide-container');
-        if (firstContainer) {
-            const bg = firstContainer.querySelector('.background-slide');
-            const slide = firstContainer.querySelector('.slide');
+    } catch (err) {
+        console.error('Slideshow init failed:', err);
+        const first = document.querySelector('.slide-container');
+        if (first) {
+            const bg = first.querySelector('.background-slide');
+            const sl = first.querySelector('.slide');
             if (bg) bg.classList.add('active');
-            if (slide) slide.classList.add('active');
+            if (sl) sl.classList.add('active');
         }
     }
 }
 
-// ─── SMOOTH SCROLL ───────────────────────────────────────────────────────────
+// ─── SMOOTH SCROLL ─────────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Set focus for accessibility
             target.setAttribute('tabindex', '-1');
             target.focus({ preventScroll: true });
         }
     });
 });
 
-// ─── SCROLL-TO-TOP ───────────────────────────────────────────────────────────
-const scrollTopButton = document.getElementById('scrollTop');
-if (scrollTopButton) {
+// ─── SCROLL-TO-TOP ─────────────────────────────────────────────────────────
+const scrollTopBtn = document.getElementById('scrollTop');
+if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
-        scrollTopButton.classList.toggle('show', window.scrollY > 400);
+        scrollTopBtn.classList.toggle('show', window.scrollY > 400);
     }, { passive: true });
-    scrollTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-// ─── NAV BACKGROUND ON SCROLL ────────────────────────────────────────────────
+// ─── NAV SCROLL STATE ──────────────────────────────────────────────────────
 const mainNav = document.getElementById('mainNav');
 if (mainNav) {
     window.addEventListener('scroll', () => {
@@ -205,51 +159,40 @@ if (mainNav) {
     }, { passive: true });
 }
 
-// ─── SCROLL-TRIGGERED ANIMATIONS ────────────────────────────────────────────
+// ─── SCROLL-TRIGGERED ANIMATIONS ───────────────────────────────────────────
 let scrollObserver = null;
 
 function initScrollAnimations() {
     const sections = document.querySelectorAll('.main-section');
-
-    scrollObserver = new IntersectionObserver((entries) => {
+    scrollObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 scrollObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    sections.forEach(section => scrollObserver.observe(section));
+    sections.forEach(s => scrollObserver.observe(s));
 }
 
 document.addEventListener('DOMContentLoaded', initScrollAnimations);
 
-// Cleanup observer on page unload
 window.addEventListener('beforeunload', () => {
-    if (scrollObserver) {
-        scrollObserver.disconnect();
-    }
-    if (slideInterval) {
-        clearInterval(slideInterval);
-    }
+    if (scrollObserver) scrollObserver.disconnect();
+    if (slideInterval) clearInterval(slideInterval);
 });
 
-// ─── FORM HANDLING (Enhanced) ───────────────────────────────────────────────
+// ─── FORM HANDLING ─────────────────────────────────────────────────────────
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        const submitBtn = contactForm.querySelector('[data-fs-submit-btn]');
-        const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
-        const btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader') : null;
-
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            if (btnText) btnText.style.display = 'none';
-            if (btnLoader) btnLoader.style.display = 'inline-block';
-        }
-
-        // Formspree AJAX will handle the actual submission
-        // This just provides visual feedback while loading
+    contactForm.addEventListener('submit', function () {
+        const btn = contactForm.querySelector('[data-fs-submit-btn]');
+        if (!btn) return;
+        const text = btn.querySelector('.btn-text');
+        const loader = btn.querySelector('.btn-loader');
+        btn.disabled = true;
+        if (text) text.style.display = 'none';
+        if (loader) loader.style.display = 'inline-block';
     });
 }

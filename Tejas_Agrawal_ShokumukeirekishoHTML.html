@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>職務経歴書 — アグラワル テジャス</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --header-bg: #1a1d23;
+    --accent: #b08d57;
+    --accent-light: #d4b88c;
+    --text: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --text-light: #f0ece4;
+    --section-line: #e0dbd3;
+    --surface: #ffffff;
+    --tag-bg: #f3f0ea;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 9pt;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: var(--surface);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--header-bg);
+    padding: 32px 44px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .header-left {}
+
+  .header-label {
+    font-size: 7pt;
+    color: var(--accent-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .header-name-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  .header-name-en {
+    font-size: 9pt;
+    color: #888;
+    letter-spacing: 0.06em;
+    font-weight: 300;
+  }
+
+  .header-date {
+    font-size: 8pt;
+    color: #888;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .header-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    font-size: 7.5pt;
+    color: #a0a0a0;
+    margin-top: 14px;
+  }
+
+  .header-contact span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .header-contact a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+
+  .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* ── BODY ── */
+  .content {
+    padding: 28px 44px 36px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 22px;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--header-bg);
+    letter-spacing: 0.12em;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS TABLE ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 4px 12px;
+    font-size: 8.5pt;
+  }
+
+  .skills-grid .label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 8pt;
+  }
+
+  .skills-grid .value {
+    color: var(--text-muted);
+    font-size: 8pt;
+  }
+
+  /* ── CERTS ── */
+  .cert-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .cert-list li {
+    font-size: 8.5pt;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .cert-list li::before {
+    content: '';
+    width: 4px;
+    height: 1px;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .cert-status {
+    font-size: 6.5pt;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: rgba(176,141,87,0.1);
+    padding: 0 5px;
+    border-radius: 2px;
+  }
+
+  /* ── JOBS ── */
+  .job {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+  }
+
+  .job:last-child {
+    margin-bottom: 0;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .job-title {
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--header-bg);
+  }
+
+  .job-date {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .job-company {
+    font-size: 8pt;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .job-desc {
+    font-size: 8pt;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .job ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job li {
+    font-size: 8.5pt;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+    line-height: 1.65;
+  }
+
+  .job li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .job-note {
+    font-size: 7.5pt;
+    color: var(--accent);
+    margin-top: 4px;
+    padding-left: 14px;
+  }
+
+  /* ── PROJECTS ── */
+  .project {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+
+  .project:last-child {
+    margin-bottom: 0;
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--header-bg);
+  }
+
+  .project-badge {
+    font-size: 7pt;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: rgba(176,141,87,0.08);
+    padding: 1px 7px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .project-tech {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .project ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .project li {
+    font-size: 8.5pt;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+    line-height: 1.65;
+  }
+
+  .project li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ── PR ── */
+  .pr-text {
+    font-size: 8.5pt;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  /* ── ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .fade-in:nth-child(2) { animation-delay: 0.06s; }
+  .fade-in:nth-child(3) { animation-delay: 0.12s; }
+  .fade-in:nth-child(4) { animation-delay: 0.18s; }
+  .fade-in:nth-child(5) { animation-delay: 0.24s; }
+  .fade-in:nth-child(6) { animation-delay: 0.30s; }
+  .fade-in:nth-child(7) { animation-delay: 0.36s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <div class="header-label">職務経歴書</div>
+        <div class="header-name-jp">アグラワル テジャス</div>
+        <div class="header-name-en">Tejas Agrawal</div>
+      </div>
+      <div class="header-date">2026年8月現在</div>
+    </div>
+    <div class="header-contact">
+      <span>080-4125-5955</span>
+      <span class="dot"></span>
+      <span><a href="mailto:tejas.agarwal.5@gmail.com">tejas.agarwal.5@gmail.com</a></span>
+      <span class="dot"></span>
+      <span><a href="https://tejas-agrawal.web.app/">tejas-agrawal.web.app</a></span>
+      <span class="dot"></span>
+      <span><a href="https://github.com/tejas-5">GitHub</a></span>
+      <span class="dot"></span>
+      <span><a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a></span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- 職務要約 -->
+    <div class="section fade-in">
+      <div class="section-title">職務要約</div>
+      <p class="summary">専門学校（東京クールジャパン・アカデミー）にてゲームプログラミング・Web開発・データベース設計を専攻し、C#、C++、Python、JavaScript、MySQLなどのプログラミングスキルを習得。Unityを用いたゲーム開発（東京ゲームショウ出展実績・itch.ioでのゲーム公開実績あり）およびHTML/CSS/JavaScriptでのWeb開発の実績を持つ。現在は半導体装置エンジニアとして勤務しており、精密組立・品質管理・技術文書作成の業務に従事。ITエンジニアとしてのキャリアを追求するため、AWS認定資格の取得を並行して進めている。日本語（JLPT N2合格、N1受験予定）・英語・ヒンディー語のトリリンガルであり、グローバルな開発環境にも対応可能。</p>
+    </div>
+
+    <!-- 活かせる経験・知識・技術 -->
+    <div class="section fade-in">
+      <div class="section-title">活かせる経験・知識・技術</div>
+      <div class="skills-grid">
+        <span class="label">プログラミング</span>
+        <span class="value">C#、C++、Python、JavaScript、Java、HTML5、CSS3、SQL（MySQL）</span>
+        <span class="label">ゲームエンジン</span>
+        <span class="value">Unity、Unreal Engine</span>
+        <span class="label">Web・クラウド</span>
+        <span class="value">Firebase、Git/GitHub、Next.js（基礎）、AWS（学習中）</span>
+        <span class="label">ツール</span>
+        <span class="value">Blender、VS Code、Tally ERP、Excel（ピボットテーブル・VLOOKUP・マクロ）</span>
+        <span class="label">語学力</span>
+        <span class="value">日本語（ビジネスレベル・JLPT N2合格、N1受験予定）、英語（ビジネスレベル）、ヒンディー語（ネイティブ）</span>
+      </div>
+    </div>
+
+    <!-- 資格 -->
+    <div class="section fade-in">
+      <div class="section-title">資格</div>
+      <ul class="cert-list">
+        <li>AWS Cloud Practitioner <span class="cert-status">取得準備中</span></li>
+        <li>日本語能力試験（JLPT）N1 <span class="cert-status">2026年12月受験予定</span></li>
+        <li>日本語能力試験（JLPT）N2 合格 — 2025年7月</li>
+        <li>Game Design and Development with Unity 修了 — 2022年3月</li>
+        <li>Certificate in Advanced Excel 取得 — 2021年7月</li>
+      </ul>
+    </div>
+
+    <!-- 職務経歴 -->
+    <div class="section fade-in">
+      <div class="section-title">職務経歴</div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">半導体装置エンジニア</span>
+          <span class="job-date">2026年4月〜現在</span>
+        </div>
+        <div class="job-company">アルテンジャパン株式会社（SCREEN高岡へ配属）・高岡市</div>
+        <div class="job-desc">半導体装置の組立・検証業務に従事。精密な工程管理と品質管理体制の下、流体供給システムの構築を担当。</div>
+        <ul>
+          <li>機械組立（ASSY）、電気配線（電装）、モジュール統合の3工程をローテーションし、流体供給システムの組み立て・検証を担当</li>
+          <li>VPS viewerソフトウェアを使用したデジタル作業指示書に基づく精密組立、およびI/Oチェック・クロス検証を実施</li>
+          <li>高揮発性化学プロセス（H2SO4、DDI、DHF、IPA）の管理、および厳格な環境・安全基準の遵守</li>
+          <li>装置キャリブレーション、トラブルシューティング、技術文書・SOPの作成・管理</li>
+        </ul>
+        <div class="job-note">※ITエンジニアとしてのキャリアを追求するため、早期に軌道修正を図っております。</div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">監査・マネジメント</span>
+          <span class="job-date">2018年7月〜2022年11月</span>
+        </div>
+        <div class="job-company">TODI TULSYAN &amp; CO.（インド・ムンバイ）</div>
+        <ul>
+          <li>製造業・保険業・銀行業のクライアントに対する財務・業務監査を実施</li>
+          <li>Excelを用いたデータ分析（ピボットテーブル、VLOOKUP、マクロ）により、不整合・コンプライアンス上の問題を検出</li>
+          <li>複数業界にわたるプロジェクトの並行管理。規制コンプライアンス、文書作成の専門性を培う</li>
+          <li>Tally ERPを使用した複数企業のGST申告・所得税申告の作成・提出</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 開発プロジェクト -->
+    <div class="section fade-in">
+      <div class="section-title">開発プロジェクト</div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">Wilderness Sniper</span>
+          <span class="project-badge">itch.io公開</span>
+        </div>
+        <div class="project-tech">Unity / C# / TextMesh Pro / Coroutine</div>
+        <ul>
+          <li>2Dアーケードシューティングゲームを開発。メインメニュー、ポーズメニュー、ゲームオーバー/クリア画面、「遊び方」チュートリアルを実装</li>
+          <li>「エラーコード」ミニゲーム：WASD入力、コルーチン駆動アニメーション、リアルタイム検証、クロスコンポーネント通信を持つタイムドパズル機能</li>
+          <li>音声システム、スコアリングシステム、解像度最適化を統合。3ヶ月間で12コミットのイテレーティブ開発</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">ShadowNyanNyan</span>
+          <span class="project-badge">東京ゲームショウ2025出展</span>
+        </div>
+        <div class="project-tech">Unity / C# / 2D Physics / チーム開発</div>
+        <ul>
+          <li>2Dプラットフォーマーを共同開発。東京ゲームショウ（2025年9月）に出展</li>
+          <li>2匹の猫キャラクターを切り替え操作するデュアルキャラクターコントロールシステムを実装。カメラ・入力ルーティング、シャドウ追従ロジック、Rigidbody2D物理制御</li>
+          <li>レベルシーン統合における主要バグ修正担当。チームメンバーのコード間の競合解決</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">Kanaubito</span>
+          <span class="project-badge">ナラティブゲーム</span>
+        </div>
+        <div class="project-tech">Unity / C# / ScriptableObject / 2D Top-Down</div>
+        <ul>
+          <li>学校を舞台とした2Dトップダウン・ナラティブミステリーゲームを共同開発</li>
+          <li>完全なインベントリシステム（5スクリプト）を設計・実装。ScriptableObjectデータアーキテクチャ、ドラッグ＆ドロップUI、アイテムスタッキングロジック</li>
+          <li>昼夜サイクルシステムを構築。Light2D遷移、フェードトゥブラックコルーチン、イベント駆動型NPC行動（ウェイポイントベース徘徊）</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">クライアントポートフォリオサイト</span>
+          <span class="project-badge">納品済</span>
+        </div>
+        <div class="project-tech">HTML5 / CSS3 / JavaScript / Firebase</div>
+        <ul>
+          <li>開発者仲間のために、バイリンガル（日本語/英語）対応のポートフォリオサイトの基盤構造を構築</li>
+          <li>レスポンシブページアーキテクチャ、ナビゲーションシステム、セクションレイアウトを開発。Firebase Hostingでデプロイ</li>
+          <li>再利用可能なテンプレートとして構築し、クライアントが自身の情報に合わせてカスタマイズ可能な形で納品</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <span class="project-name">個人ポートフォリオサイト</span>
+          <span class="project-badge">公開中</span>
+        </div>
+        <div class="project-tech">HTML5 / CSS3 / JavaScript / Firebase / SEO</div>
+        <ul>
+          <li>HTML/CSS/JavaScriptを用いてゼロから構築した完全レスポンシブ・多言語対応（JP/EN）のポートフォリオサイト</li>
+          <li>スクロールアニメーション、モバイルファーストナビゲーション、Formspree連絡フォームを実装</li>
+          <li>SEO対策（Schema.org構造化データ、Open Graphメタタグ）を実施し、Firebase Hostingでデプロイ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自己PR -->
+    <div class="section fade-in">
+      <div class="section-title">自己PR</div>
+      <p class="pr-text">専門学校でゲームプログラミング、Web開発、データベース設計を学び、C#、Python、JavaScript、Unity、HTML/CSS、MySQLなどの実践的スキルを習得しました。Unityゲーム開発では、itch.ioでのゲーム公開と東京ゲームショウ出展という実績を積んでおり、Web開発では個人サイトおよびクライアント向けサイトをゼロから構築・公開しています。GitHub上でプロジェクトコードを公開しており、コードの品質とアーキテクチャをご確認いただけます。現在は半導体装置エンジニアとして、ミスの許されない環境で精密な業務遂行と責任感を養いながら、並行してAWS認定資格の取得を進めています。日本語（JLPT N2、N1受験予定）、英語、ヒンディー語のトリリンガルとして、グローバルなチーム開発環境にも対応可能です。ITエンジニアとして、フロントエンド、バックエンド、ゲーム開発など特定の領域に限定せず、柔軟に技術をキャッチアップし適応する意欲を持っており、貴社の事業発展に貢献したいと考えております。</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

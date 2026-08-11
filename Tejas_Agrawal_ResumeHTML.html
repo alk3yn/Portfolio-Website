@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejas Agrawal — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --header-bg: #1a1d23;
+    --accent: #b08d57;
+    --accent-light: #d4b88c;
+    --text: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --text-light: #f0ece4;
+    --section-line: #e0dbd3;
+    --surface: #ffffff;
+    --tag-bg: #f3f0ea;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 9.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: var(--surface);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--header-bg);
+    padding: 36px 44px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32pt;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .header-subtitle {
+    font-size: 9pt;
+    color: var(--accent-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .header-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    font-size: 8pt;
+    color: #a0a0a0;
+  }
+
+  .header-contact span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .header-contact a {
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+
+  .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .visa-tag {
+    display: inline-block;
+    background: rgba(176,141,87,0.15);
+    color: var(--accent-light);
+    font-size: 7pt;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    margin-top: 10px;
+  }
+
+  /* ── BODY ── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 0;
+    min-height: calc(297mm - 140px);
+  }
+
+  .main {
+    padding: 28px 32px 28px 44px;
+  }
+
+  .sidebar {
+    padding: 28px 28px 28px 0;
+    border-left: 1px solid var(--section-line);
+    padding-left: 24px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 22px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--header-bg);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .sidebar .section-title {
+    font-size: 10pt;
+    letter-spacing: 0.14em;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-size: 8.8pt;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  /* ── PROJECTS ── */
+  .project {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+  }
+
+  .project:last-child { margin-bottom: 0; }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--header-bg);
+  }
+
+  .project-badge {
+    font-size: 7pt;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(176,141,87,0.08);
+    padding: 1px 7px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .project-tech {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    letter-spacing: 0.02em;
+  }
+
+  .project ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .project li {
+    font-size: 8.5pt;
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+
+  .project li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ── EXPERIENCE ── */
+  .job {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+  }
+
+  .job:last-child { margin-bottom: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1px;
+  }
+
+  .job-title {
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--header-bg);
+  }
+
+  .job-date {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .job-company {
+    font-size: 8pt;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+
+  .job ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job li {
+    font-size: 8.5pt;
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+
+  .job li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .job-note {
+    font-size: 7.5pt;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  /* ── SIDEBAR ITEMS ── */
+  .skill-group {
+    margin-bottom: 14px;
+  }
+
+  .skill-group:last-child { margin-bottom: 0; }
+
+  .skill-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .skill-tag {
+    font-size: 7.5pt;
+    background: var(--tag-bg);
+    color: var(--text);
+    padding: 2px 7px;
+    border-radius: 2px;
+    line-height: 1.5;
+  }
+
+  .skill-tag.highlight {
+    background: rgba(176,141,87,0.12);
+    color: #8a6d3b;
+  }
+
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+
+  .edu-item {
+    margin-bottom: 10px;
+  }
+
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-school {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--header-bg);
+    line-height: 1.3;
+  }
+
+  .edu-detail {
+    font-size: 7.5pt;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 8pt;
+    line-height: 1.4;
+  }
+
+  .cert-item:last-child { margin-bottom: 0; }
+
+  .cert-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .cert-status {
+    font-size: 6.5pt;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    background: rgba(176,141,87,0.1);
+    padding: 0 5px;
+    border-radius: 2px;
+    margin-left: 2px;
+  }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+    font-size: 8pt;
+  }
+
+  .lang-item:last-child { margin-bottom: 0; }
+
+  .lang-level {
+    font-size: 7pt;
+    color: var(--text-muted);
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  /* ── ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .fade-in:nth-child(2) { animation-delay: 0.06s; }
+  .fade-in:nth-child(3) { animation-delay: 0.12s; }
+  .fade-in:nth-child(4) { animation-delay: 0.18s; }
+  .fade-in:nth-child(5) { animation-delay: 0.24s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-name">Tejas Agrawal</div>
+    <div class="header-subtitle">Software Developer &middot; Game Programmer &middot; Web Developer</div>
+    <div class="header-contact">
+      <span>080-4125-5955</span>
+      <span class="dot"></span>
+      <span><a href="mailto:tejas.agarwal.5@gmail.com">tejas.agarwal.5@gmail.com</a></span>
+      <span class="dot"></span>
+      <span><a href="https://tejas-agrawal.web.app/">Portfolio</a></span>
+      <span class="dot"></span>
+      <span><a href="https://github.com/tejas-5">GitHub</a></span>
+      <span class="dot"></span>
+      <span><a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a></span>
+      <span class="dot"></span>
+      <span>Takaoka, Toyama &mdash; Open to Relocation</span>
+    </div>
+    <div class="visa-tag">Engineer / Specialist in Humanities Visa &mdash; No Employer Restrictions</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+      <!-- SUMMARY -->
+      <div class="section fade-in">
+        <div class="section-title">Professional Summary</div>
+        <p class="summary">Software developer with hands-on experience in C#, Python, JavaScript, and Unity. Trained at a Tokyo vocational school specializing in game programming and full-stack web development. Published a game on itch.io, exhibited at Tokyo Game Show 2025, and delivered multiple web and game projects end-to-end. Trilingual (Japanese N2, English, Hindi) with strong documentation and quality discipline from a precision manufacturing environment. Currently pursuing AWS Cloud Practitioner certification.</p>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="section fade-in">
+        <div class="section-title">Projects</div>
+
+        <div class="project">
+          <div class="project-header">
+            <span class="project-name">Wilderness Sniper</span>
+            <span class="project-badge">Published on itch.io</span>
+          </div>
+          <div class="project-tech">Unity &bull; C# &bull; TextMesh Pro &bull; Coroutine System</div>
+          <ul>
+            <li>Designed and built a 2D arcade shooter with full UI/UX: main menu, pause, game-over/clear screens, and interactive tutorial</li>
+            <li>Developed &ldquo;Error Code&rdquo; timed puzzle mini-game with WASD input, coroutine-driven animations, and real-time validation</li>
+            <li>Integrated audio system, dual-UI scoring, and resolution optimization across screen sizes over 3 months (12 commits)</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <span class="project-name">ShadowNyanNyan</span>
+            <span class="project-badge">TGS 2025</span>
+          </div>
+          <div class="project-tech">Unity &bull; C# &bull; 2D Physics &bull; Team Project</div>
+          <ul>
+            <li>Co-developed a 2D platformer selected for exhibition at Tokyo Game Show (September 2025)</li>
+            <li>Implemented dual-character control with camera routing, shadow-follow logic, and Rigidbody2D physics</li>
+            <li>Served as primary debugger for level integration; resolved cross-team code conflicts and merge issues</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <span class="project-name">Kanaubito</span>
+            <span class="project-badge">Narrative Game</span>
+          </div>
+          <div class="project-tech">Unity &bull; C# &bull; ScriptableObject &bull; 2D Top-Down</div>
+          <ul>
+            <li>Built complete inventory system (5 scripts) with ScriptableObject data architecture, drag-and-drop UI, item stacking</li>
+            <li>Developed day/night cycle with Light2D transitions, fade-to-black coroutines, and event-driven NPC behavior</li>
+            <li>Designed full school environment layout and player flow for level design</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <span class="project-name">Client Portfolio Site</span>
+            <span class="project-badge">Delivered</span>
+          </div>
+          <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase</div>
+          <ul>
+            <li>Built foundational bilingual (JP/EN) portfolio structure for a fellow developer with responsive layout and navigation</li>
+            <li>Delivered a reusable, customizable template deployed via Firebase Hosting</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <span class="project-name">Personal Portfolio</span>
+            <span class="project-badge">Live</span>
+          </div>
+          <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase &bull; SEO</div>
+          <ul>
+            <li>Built a fully responsive bilingual (JP/EN) site from scratch with dynamic language switching and scroll animations</li>
+            <li>Implemented Schema.org structured data, Open Graph meta tags, and Formspree contact integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="section fade-in">
+        <div class="section-title">Experience</div>
+
+        <div class="job">
+          <div class="job-header">
+            <span class="job-title">Semiconductor Equipment Engineer</span>
+            <span class="job-date">Apr 2026 &mdash; Present</span>
+          </div>
+          <div class="job-company">Alten Japan (Assigned to SCREEN Takaoka) &middot; Takaoka, Japan</div>
+          <ul>
+            <li>Execute precision assembly across mechanical, electrical, and module integration phases for semiconductor fluid delivery systems</li>
+            <li>Perform digital-instruction-based assembly with I/O verification and cross-checks under zero-defect tolerance</li>
+            <li>Manage high-precision chemical process modules (H2SO4, DDI, DHF, IPA) following strict safety protocols</li>
+            <li>Create and maintain technical documentation, SOPs, and quality checklists for calibration and troubleshooting</li>
+          </ul>
+          <div class="job-note">Seeking transition to software engineering to apply programming skills and education.</div>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <span class="job-title">Auditor / Management</span>
+            <span class="job-date">Jul 2018 &mdash; Nov 2022</span>
+          </div>
+          <div class="job-company">Todi Tulsyan &amp; Co. &middot; Mumbai, India</div>
+          <ul>
+            <li>Conducted financial and operational audits for clients across manufacturing, insurance, and banking sectors</li>
+            <li>Performed data analysis using advanced Excel (pivot tables, VLOOKUP, macros) to identify discrepancies</li>
+            <li>Managed parallel projects across multiple industries with strict compliance and documentation standards</li>
+            <li>Filed GST and income tax returns for multiple clients using Tally ERP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="section-title">Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-label">Languages</div>
+          <div class="skill-items">
+            <span class="skill-tag highlight">C#</span>
+            <span class="skill-tag highlight">Python</span>
+            <span class="skill-tag highlight">JavaScript</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Engines &amp; Tools</div>
+          <div class="skill-items">
+            <span class="skill-tag highlight">Unity</span>
+            <span class="skill-tag">Unreal Engine</span>
+            <span class="skill-tag">Git/GitHub</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">Blender</span>
+            <span class="skill-tag">Next.js</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Cloud</div>
+          <div class="skill-items">
+            <span class="skill-tag highlight">AWS (Studying)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-school">Diploma in Game Programming</div>
+          <div class="edu-detail">Tokyo Cool Japan Academy<br>Apr 2024 &mdash; Mar 2026</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-school">Japanese Language Studies</div>
+          <div class="edu-detail">Toyo Language School, Tokyo<br>Jul 2023 &mdash; Mar 2024</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-school">MBA in Information Technology</div>
+          <div class="edu-detail">Amity University, India<br>Dec 2019 &mdash; Dec 2021</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-school">Bachelor of Commerce</div>
+          <div class="edu-detail">Thakur College, India<br>Apr 2015 &mdash; Apr 2018</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Certifications</div>
+
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          <span>AWS Cloud Practitioner <span class="cert-status">In Progress</span></span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          <span>JLPT N1 <span class="cert-status">Dec 2026</span></span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          <span>JLPT N2 &mdash; Jul 2025</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          <span>Game Dev with Unity &mdash; Mar 2022</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-dot"></span>
+          <span>Advanced Excel &mdash; Jul 2021</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Languages</div>
+
+        <div class="lang-item">
+          <span>Japanese</span>
+          <span class="lang-level">Business / N2</span>
+        </div>
+        <div class="lang-item">
+          <span>English</span>
+          <span class="lang-level">Business</span>
+        </div>
+        <div class="lang-item">
+          <span>Hindi</span>
+          <span class="lang-level">Native</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

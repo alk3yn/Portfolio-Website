@@ -1,17 +1,7 @@
-# robots.txt - Tejas Agrawal Portfolio
-# https://tejasagrawal.dev
-
 User-agent: *
 Allow: /
-
-# Disallow private or utility paths
 Disallow: /private/
 Disallow: /admin/
 Disallow: /temp/
-Disallow: /*.pdf$          # Optional: block PDFs from indexing (remove if you want resumes searchable)
-
-# Crawl-delay for polite bots (optional, remove if using CDN)
 Crawl-delay: 1
-
-# Sitemap location
 Sitemap: https://tejas-agrawal.web.app/sitemap.xml
