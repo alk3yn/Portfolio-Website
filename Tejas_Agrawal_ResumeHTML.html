@@ -31,7 +31,11 @@
 
     @page {
       size: A4;
-      margin: 0;
+      margin: 12mm 0;        
+    }
+
+    @page :first {
+      margin-top: 0;        
     }
 
     body {
@@ -230,6 +234,21 @@
       color: var(--text-muted);
       margin-bottom: 5px;
       letter-spacing: 0.02em;
+    }
+
+    .project-links {
+      font-size: 7pt;
+      margin-bottom: 5px;
+    }
+
+    .project-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
     }
 
     .project ul {
@@ -438,14 +457,56 @@
 
     /* ── PRINT ── */
     @media print {
+      html,
       body {
         background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .page {
         box-shadow: none;
         margin: 0;
         width: 100%;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .body {
+        min-height: 0;
+      }
+
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .section-title {
+        break-after: avoid;
+      }
+
+      .header { padding-top: 26px; padding-bottom: 22px; }
+      .main { padding-top: 22px; padding-bottom: 14px; }
+      .sidebar { padding-top: 22px; padding-bottom: 14px; }
+      .content { padding-top: 22px; padding-bottom: 14px; }
+      .section { margin-bottom: 15px; }
+      .sidebar-section { margin-bottom: 14px; }
+      .section-title { margin-bottom: 10px; }
+      .project,
+      .job { margin-bottom: 11px; }
+      .project li,
+      .job li { line-height: 1.42; margin-bottom: 2px; }
+      .header-contact { gap: 4px 16px; }
+      .header-name { font-size: 29pt; }
+
+      .project,
+      .job,
+      .edu-item,
+      .skill-group,
+      .cert-item,
+      .lang-item {
+        break-inside: avoid;
       }
     }
 
@@ -488,7 +549,7 @@
     <!-- HEADER -->
     <div class="header">
       <div class="header-name">Tejas Agrawal</div>
-      <div class="header-subtitle">Software Developer &middot; Game Programmer &middot; Web Developer</div>
+      <div class="header-subtitle">Software Developer &middot; Full-Stack Engineer &middot; Game Programmer</div>
       <div class="header-contact">
         <span>080-4125-5955</span>
         <span class="dot"></span>
@@ -496,11 +557,13 @@
         <span class="dot"></span>
         <span><a href="https://tejas-agrawal.web.app/">Portfolio</a></span>
         <span class="dot"></span>
-        <span><a href="https://github.com/tejas-5">GitHub</a></span>
+        <span><a href="https://github.com/alk3yn">GitHub (alk3yn)</a></span>
+        <span class="dot"></span>
+        <span><a href="https://github.com/tejas-5">GitHub (tejas-5)</a></span>
         <span class="dot"></span>
         <span><a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a></span>
         <span class="dot"></span>
-        <span>Takaoka, Toyama &mdash; Open to Relocation</span>
+        <span>Takaoka, Toyama &mdash; Open to Relocation &middot; Remote OK</span>
       </div>
       <div class="visa-tag">Engineer / Specialist in Humanities Visa &mdash; No Employer Restrictions</div>
     </div>
@@ -514,11 +577,13 @@
         <!-- SUMMARY -->
         <div class="section fade-in">
           <div class="section-title">Professional Summary</div>
-          <p class="summary">Software developer with hands-on experience in C#, Python, JavaScript, and Unity. Trained
-            at a Tokyo vocational school specializing in game programming and full-stack web development. Published a
-            game on itch.io, exhibited at Tokyo Game Show 2025, and delivered multiple web and game projects end-to-end.
-            Trilingual (Japanese N2, English, Hindi) with strong documentation and quality discipline from a precision
-            manufacturing environment. AWS Cloud Practitioner certified.</p>
+          <p class="summary">Software developer with hands-on experience in C#, JavaScript, React, Node.js, and Unity, and working
+            knowledge of Python. Trained at a Tokyo vocational school specializing in game programming and full-stack
+            web development. Currently building, as a solo project, a bilingual full-stack web application (React,
+            Node.js, PostgreSQL) with authentication, data visualization, and an AWS deployment architecture. Published
+            a game on itch.io, co-developed a title exhibited at Tokyo Game Show 2025, and delivered multiple web and
+            game projects end-to-end. Trilingual (Japanese N2, English, Hindi) with strong documentation and quality
+            discipline from a precision manufacturing environment. AWS Cloud Practitioner certified.</p>
         </div>
 
         <!-- PROJECTS -->
@@ -527,10 +592,35 @@
 
           <div class="project">
             <div class="project-header">
+              <span class="project-name">TechMatch Japan</span>
+              <span class="project-badge">Full-Stack &middot; In Development</span>
+            </div>
+            <div class="project-tech">React &bull; Node.js &bull; Express.js &bull; PostgreSQL &bull; Chart.js &bull; JWT &bull; i18next &bull; AWS (S3, CloudFront, EC2, RDS)</div>
+            <div class="project-links">
+              <a href="https://github.com/alk3yn/techmatch-japan">GitHub</a>
+            </div>
+            <ul>
+              <li>Solo project in active development: a bilingual (JP/EN) IT career intelligence platform with a salary
+                analytics dashboard (Chart.js), skill gap analyzer, and job filtering with sorting, pagination, and
+                shareable URL state</li>
+              <li>Implemented JWT-based authentication (register, login, profile), saved searches, and a skill profile
+                that persists across sessions; REST API with 17 endpoints on Express.js and PostgreSQL</li>
+              <li>Designed the AWS deployment architecture (S3 + CloudFront for the React frontend, EC2 with nginx and
+                PM2 for the API, RDS for PostgreSQL) with deploy scripts; applied code-splitting (596KB &rarr; 337KB
+                bundle)</li>
+            </ul>
+          </div>
+
+          <div class="project">
+            <div class="project-header">
               <span class="project-name">Wilderness Sniper</span>
               <span class="project-badge">Published on itch.io</span>
             </div>
             <div class="project-tech">Unity &bull; C# &bull; TextMesh Pro &bull; Coroutine System</div>
+            <div class="project-links">
+              <a href="https://alk3yn.itch.io/wilderness-sniper">itch.io</a>
+              <a href="https://github.com/tejas-5/wilderness-sniper">GitHub</a>
+            </div>
             <ul>
               <li>Designed and built a 2D arcade shooter with full UI/UX: main menu, pause, game-over/clear screens, and
                 interactive tutorial</li>
@@ -547,12 +637,13 @@
               <span class="project-badge">TGS 2025</span>
             </div>
             <div class="project-tech">Unity &bull; C# &bull; 2D Physics &bull; Team Project</div>
+            <div class="project-links">
+              <a href="https://github.com/tejas-5/shadownyanyan">GitHub</a>
+            </div>
             <ul>
-              <li>Co-developed a 2D platformer selected for exhibition at Tokyo Game Show (September 2025)</li>
-              <li>Implemented dual-character control with camera routing, shadow-follow logic, and Rigidbody2D physics
-              </li>
-              <li>Served as primary debugger for level integration; resolved cross-team code conflicts and merge issues
-              </li>
+              <li>Co-developed a 2D platformer exhibited at Tokyo Game Show (September 2025)</li>
+              <li>Implemented dual-character control with camera routing, shadow-follow logic, and Rigidbody2D physics</li>
+              <li>Served as primary debugger for level integration; resolved cross-team code conflicts and merge issues</li>
             </ul>
           </div>
 
@@ -562,6 +653,9 @@
               <span class="project-badge">Narrative Game</span>
             </div>
             <div class="project-tech">Unity &bull; C# &bull; ScriptableObject &bull; 2D Top-Down</div>
+            <div class="project-links">
+              <a href="https://github.com/ShuuJun/kanaubitoProject">GitHub</a>
+            </div>
             <ul>
               <li>Built complete inventory system (5 scripts) with ScriptableObject data architecture, drag-and-drop UI,
                 item stacking</li>
@@ -577,6 +671,9 @@
               <span class="project-badge">Delivered</span>
             </div>
             <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase</div>
+            <div class="project-links">
+              <a href="https://naimur-rahman-aeae2.web.app/">Live</a>
+            </div>
             <ul>
               <li>Built foundational bilingual (JP/EN) portfolio structure for a fellow developer with responsive layout
                 and navigation</li>
@@ -590,6 +687,10 @@
               <span class="project-badge">Live</span>
             </div>
             <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase &bull; SEO</div>
+            <div class="project-links">
+              <a href="https://tejas-agrawal.web.app/">Live</a>
+              <a href="https://github.com/alk3yn/Portfolio-Website">GitHub</a>
+            </div>
             <ul>
               <li>Built a fully responsive bilingual (JP/EN) site from scratch with dynamic language switching and
                 scroll animations</li>
@@ -617,6 +718,8 @@
                 protocols</li>
               <li>Create and maintain technical documentation, SOPs, and quality checklists for calibration and
                 troubleshooting</li>
+              <li>Mentor newly assigned team members on assembly procedures and quality checkpoints; enforce
+                cross-verification to prevent defects</li>
             </ul>
             <div class="job-note">Seeking transition to software engineering to apply programming skills and education.
             </div>
@@ -631,8 +734,7 @@
             <ul>
               <li>Conducted financial and operational audits for clients across manufacturing, insurance, and banking
                 sectors</li>
-              <li>Performed data analysis using advanced Excel (pivot tables, VLOOKUP, macros) to identify discrepancies
-              </li>
+              <li>Performed data analysis using advanced Excel (pivot tables, VLOOKUP, macros) to identify discrepancies</li>
               <li>Managed parallel projects across multiple industries with strict compliance and documentation
                 standards</li>
               <li>Filed GST and income tax returns for multiple clients using Tally ERP</li>
@@ -651,13 +753,24 @@
             <div class="skill-label">Languages</div>
             <div class="skill-items">
               <span class="skill-tag highlight">C#</span>
-              <span class="skill-tag highlight">Python</span>
               <span class="skill-tag highlight">JavaScript</span>
+              <span class="skill-tag">Python</span>
               <span class="skill-tag">C++</span>
-              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Java (basic)</span>
               <span class="skill-tag">HTML5</span>
               <span class="skill-tag">CSS3</span>
               <span class="skill-tag">SQL</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Frameworks &amp; Libraries</div>
+            <div class="skill-items">
+              <span class="skill-tag highlight">React</span>
+              <span class="skill-tag highlight">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">Next.js (basic)</span>
+              <span class="skill-tag">Chart.js</span>
             </div>
           </div>
 
@@ -668,15 +781,19 @@
               <span class="skill-tag">Unreal Engine</span>
               <span class="skill-tag">Git/GitHub</span>
               <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">PostgreSQL</span>
               <span class="skill-tag">Blender</span>
-              <span class="skill-tag">Next.js</span>
             </div>
           </div>
 
           <div class="skill-group">
             <div class="skill-label">Cloud</div>
             <div class="skill-items">
-              <span class="skill-tag highlight">AWS Cloud Practitioner</span>
+              <span class="skill-tag highlight">AWS</span>
+              <span class="skill-tag">S3</span>
+              <span class="skill-tag">CloudFront</span>
+              <span class="skill-tag">EC2</span>
+              <span class="skill-tag">RDS</span>
             </div>
           </div>
         </div>

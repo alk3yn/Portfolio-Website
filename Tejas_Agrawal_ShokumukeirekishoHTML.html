@@ -31,7 +31,11 @@
 
     @page {
       size: A4;
-      margin: 0;
+      margin: 12mm 0;        
+    }
+
+    @page :first {
+      margin-top: 0;        
     }
 
     body {
@@ -129,6 +133,22 @@
     .header-contact a {
       color: var(--accent-light);
       text-decoration: none;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px 12px;
+      font-size: 7.5pt;
+      color: var(--accent-light);
+      margin-top: 8px;
+    }
+
+    .header-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .dot {
@@ -353,6 +373,22 @@
       letter-spacing: 0.02em;
     }
 
+    .project-links {
+      font-size: 7pt;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .project-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
     .project ul {
       list-style: none;
       padding: 0;
@@ -385,14 +421,56 @@
 
     /* ── PRINT ── */
     @media print {
+      html,
       body {
         background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .page {
         box-shadow: none;
         margin: 0;
         width: 100%;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .body {
+        min-height: 0;
+      }
+
+      .fade-in {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .section-title {
+        break-after: avoid;
+      }
+
+      .header { padding-top: 26px; padding-bottom: 22px; }
+      .main { padding-top: 22px; padding-bottom: 14px; }
+      .sidebar { padding-top: 22px; padding-bottom: 14px; }
+      .content { padding-top: 22px; padding-bottom: 14px; }
+      .section { margin-bottom: 15px; }
+      .sidebar-section { margin-bottom: 14px; }
+      .section-title { margin-bottom: 10px; }
+      .project,
+      .job { margin-bottom: 11px; }
+      .project li,
+      .job li { line-height: 1.42; margin-bottom: 2px; }
+      .header-contact { gap: 4px 16px; }
+      .header-name { font-size: 29pt; }
+
+      .project,
+      .job,
+      .edu-item,
+      .skill-group,
+      .cert-item,
+      .lang-item {
+        break-inside: avoid;
       }
     }
 
@@ -448,7 +526,7 @@
           <div class="header-name-jp">アグラワル テジャス</div>
           <div class="header-name-en">Tejas Agrawal</div>
         </div>
-        <div class="header-date">2026年8月現在</div>
+        <div class="header-date">2026年10月現在</div>
       </div>
       <div class="header-contact">
         <span>080-4125-5955</span>
@@ -457,9 +535,16 @@
         <span class="dot"></span>
         <span><a href="https://tejas-agrawal.web.app/">tejas-agrawal.web.app</a></span>
         <span class="dot"></span>
-        <span><a href="https://github.com/tejas-5">GitHub</a></span>
+        <span><a href="https://github.com/alk3yn">GitHub (alk3yn)</a></span>
+        <span class="dot"></span>
+        <span><a href="https://github.com/tejas-5">GitHub (tejas-5)</a></span>
         <span class="dot"></span>
         <span><a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a></span>
+      </div>
+      <div class="header-meta">
+        <span>富山県高岡市在住（全国転居可・リモートワーク可）</span>
+        <span class="dot"></span>
+        <span>在留資格「技術・人文知識・国際業務」— 就労先の制限なし</span>
       </div>
     </div>
 
@@ -470,8 +555,7 @@
       <div class="section fade-in">
         <div class="section-title">職務要約</div>
         <p class="summary">
-          専門学校（東京クールジャパン・アカデミー）にてゲームプログラミング・Web開発・データベース設計を専攻し、C#、C++、Python、JavaScript、MySQLなどのプログラミングスキルを習得。Unityを用いたゲーム開発（東京ゲームショウ出展実績・itch.ioでのゲーム公開実績あり）およびHTML/CSS/JavaScriptでのWeb開発の実績を持つ。現在は半導体装置エンジニアとして勤務しており、精密組立・品質管理・技術文書作成の業務に従事。ITエンジニアとしてのキャリアを追求するため、AWS
-          Cloud Practitioner認定を取得。日本語（JLPT N2合格）・英語・ヒンディー語のトリリンガルであり、グローバルな開発環境にも対応可能。</p>
+          専門学校（東京クールジャパン・アカデミー）にてゲームプログラミング・Web開発・データベース設計を専攻し、C#、C++、JavaScript、MySQLなどのプログラミングスキルを習得（Pythonはスクリプト開発レベル）。Unityを用いたゲーム開発（itch.ioでのゲーム公開実績、東京ゲームショウ出展作品の共同開発実績あり）およびHTML/CSS/JavaScriptでのWeb開発の実績を持つ。現在は、React・Node.js・PostgreSQLを用いたフルスタックWebアプリケーション「TechMatch Japan」を個人開発中（AWSデプロイ構成を設計済み）。現在は半導体装置エンジニアとして勤務しており、精密組立・品質管理・技術文書作成の業務に従事。ITエンジニアとしてのキャリアを追求するため、AWS Cloud Practitioner認定を取得。日本語（JLPT N2合格）・英語・ヒンディー語のトリリンガルであり、グローバルな開発環境にも対応可能。</p>
       </div>
 
       <!-- 活かせる経験・知識・技術 -->
@@ -479,11 +563,13 @@
         <div class="section-title">活かせる経験・知識・技術</div>
         <div class="skills-grid">
           <span class="label">プログラミング</span>
-          <span class="value">C#、C++、Python、JavaScript、Java、HTML5、CSS3、SQL（MySQL）</span>
+          <span class="value">C#、C++、JavaScript、HTML5、CSS3、SQL（PostgreSQL、MySQL）、Python（スクリプト開発）、Java（基礎）</span>
+          <span class="label">フレームワーク</span>
+          <span class="value">React、Node.js、Express.js、Chart.js、Next.js（基礎）</span>
           <span class="label">ゲームエンジン</span>
           <span class="value">Unity、Unreal Engine</span>
           <span class="label">Web・クラウド</span>
-          <span class="value">Firebase、Git/GitHub、Next.js（基礎）、AWS Cloud Practitioner認定</span>
+          <span class="value">AWS（S3、CloudFront、EC2、RDS）、Firebase、Git/GitHub</span>
           <span class="label">ツール</span>
           <span class="value">Blender、VS Code、Tally ERP、Excel（ピボットテーブル・VLOOKUP・マクロ）</span>
           <span class="label">語学力</span>
@@ -518,6 +604,7 @@
             <li>VPS viewerソフトウェアを使用したデジタル作業指示書に基づく精密組立、およびI/Oチェック・クロス検証を実施</li>
             <li>高揮発性化学プロセス（H2SO4、DDI、DHF、IPA）の管理、および厳格な環境・安全基準の遵守</li>
             <li>装置キャリブレーション、トラブルシューティング、技術文書・SOPの作成・管理</li>
+            <li>3名体制での作業に従事し、新人への作業説明・指導も担当。不明点は自己判断せず、チームとの確認を通じて品質を徹底</li>
           </ul>
           <div class="job-note">※ITエンジニアとしてのキャリアを追求するため、早期に軌道修正を図っております。</div>
         </div>
@@ -543,10 +630,30 @@
 
         <div class="project">
           <div class="project-header">
+            <span class="project-name">TechMatch Japan</span>
+            <span class="project-badge">フルスタック開発（個人・開発中）</span>
+          </div>
+          <div class="project-tech">React / Node.js / Express.js / PostgreSQL / Chart.js / JWT / i18next / AWS（S3、CloudFront、EC2、RDS）</div>
+          <div class="project-links">
+            <a href="https://github.com/alk3yn/techmatch-japan">GitHub</a>
+          </div>
+          <ul>
+            <li>日本のIT業界で働くエンジニア向けのバイリンガル（日本語/英語）キャリア分析プラットフォームを個人で開発中。給与分析ダッシュボード（Chart.jsによるデータ可視化）、スキルギャップ分析機能、求人フィルタリング・ソート・ページネーション（URL共有対応）を実装</li>
+            <li>JWT認証付きユーザー管理（登録・ログイン・プロフィール）、保存済み検索条件、スキル情報の永続化を実装。REST API（17エンドポイント）をExpress.js + PostgreSQLで設計・開発</li>
+            <li>AWSデプロイ構成（フロントエンド：S3 + CloudFront、API：EC2 + nginx + PM2、データベース：RDS）を設計し、デプロイスクリプトを整備。コード分割によりバンドルサイズを596KBから337KBに削減。GitHubでバージョン管理</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
             <span class="project-name">Wilderness Sniper</span>
             <span class="project-badge">itch.io公開</span>
           </div>
           <div class="project-tech">Unity / C# / TextMesh Pro / Coroutine</div>
+          <div class="project-links">
+            <a href="https://alk3yn.itch.io/wilderness-sniper">itch.io</a>
+            <a href="https://github.com/tejas-5/wilderness-sniper">GitHub</a>
+          </div>
           <ul>
             <li>2Dアーケードシューティングゲームを開発。メインメニュー、ポーズメニュー、ゲームオーバー/クリア画面、「遊び方」チュートリアルを実装</li>
             <li>「エラーコード」ミニゲーム：WASD入力、コルーチン駆動アニメーション、リアルタイム検証、クロスコンポーネント通信を持つタイムドパズル機能</li>
@@ -557,9 +664,12 @@
         <div class="project">
           <div class="project-header">
             <span class="project-name">ShadowNyanNyan</span>
-            <span class="project-badge">東京ゲームショウ2025出展</span>
+            <span class="project-badge">東京ゲームショウ2025出展作品（共同開発）</span>
           </div>
           <div class="project-tech">Unity / C# / 2D Physics / チーム開発</div>
+          <div class="project-links">
+            <a href="https://github.com/tejas-5/shadownyanyan">GitHub</a>
+          </div>
           <ul>
             <li>2Dプラットフォーマーを共同開発。東京ゲームショウ（2025年9月）に出展</li>
             <li>2匹の猫キャラクターを切り替え操作するデュアルキャラクターコントロールシステムを実装。カメラ・入力ルーティング、シャドウ追従ロジック、Rigidbody2D物理制御</li>
@@ -573,6 +683,9 @@
             <span class="project-badge">ナラティブゲーム</span>
           </div>
           <div class="project-tech">Unity / C# / ScriptableObject / 2D Top-Down</div>
+          <div class="project-links">
+            <a href="https://github.com/ShuuJun/kanaubitoProject">GitHub</a>
+          </div>
           <ul>
             <li>学校を舞台とした2Dトップダウン・ナラティブミステリーゲームを共同開発</li>
             <li>完全なインベントリシステム（5スクリプト）を設計・実装。ScriptableObjectデータアーキテクチャ、ドラッグ＆ドロップUI、アイテムスタッキングロジック</li>
@@ -586,6 +699,9 @@
             <span class="project-badge">納品済</span>
           </div>
           <div class="project-tech">HTML5 / CSS3 / JavaScript / Firebase</div>
+          <div class="project-links">
+            <a href="https://naimur-rahman-aeae2.web.app/">Live</a>
+          </div>
           <ul>
             <li>開発者仲間のために、バイリンガル（日本語/英語）対応のポートフォリオサイトの基盤構造を構築</li>
             <li>レスポンシブページアーキテクチャ、ナビゲーションシステム、セクションレイアウトを開発。Firebase Hostingでデプロイ</li>
@@ -599,6 +715,10 @@
             <span class="project-badge">公開中</span>
           </div>
           <div class="project-tech">HTML5 / CSS3 / JavaScript / Firebase / SEO</div>
+          <div class="project-links">
+            <a href="https://tejas-agrawal.web.app/">Live</a>
+            <a href="https://github.com/alk3yn/Portfolio-Website">GitHub</a>
+          </div>
           <ul>
             <li>HTML/CSS/JavaScriptを用いてゼロから構築した完全レスポンシブ・多言語対応（JP/EN）のポートフォリオサイト</li>
             <li>スクロールアニメーション、モバイルファーストナビゲーション、Formspree連絡フォームを実装</li>
@@ -611,8 +731,7 @@
       <div class="section fade-in">
         <div class="section-title">自己PR</div>
         <p class="pr-text">
-          専門学校でゲームプログラミング、Web開発、データベース設計を学び、C#、Python、JavaScript、Unity、HTML/CSS、MySQLなどの実践的スキルを習得しました。Unityゲーム開発では、itch.ioでのゲーム公開と東京ゲームショウ出展という実績を積んでおり、Web開発では個人サイトおよびクライアント向けサイトをゼロから構築・公開しています。GitHub上でプロジェクトコードを公開しており、コードの品質とアーキテクチャをご確認いただけます。現在は半導体装置エンジニアとして、ミスの許されない環境で精密な業務遂行と責任感を養いながら、AWS
-          Cloud Practitioner認定を取得しました。日本語（JLPT N2）、英語、ヒンディー語のトリリンガルとして、グローバルなチーム開発環境にも対応可能です。ITエンジニアとして、フロントエンド、バックエンド、ゲーム開発など特定の領域に限定せず、柔軟に技術をキャッチアップし適応する意欲を持っており、貴社の事業発展に貢献したいと考えております。
+          専門学校でゲームプログラミング、Web開発、データベース設計を学び、C#、JavaScript、Unity、HTML/CSS、MySQLなどの実践的スキルを習得しました（Pythonはスクリプト開発レベル）。Unityゲーム開発では、itch.ioでのゲーム公開と、東京ゲームショウ出展作品の共同開発という実績を積んでおり、Web開発では個人サイトおよびクライアント向けサイトをゼロから構築・公開しています。さらに、React・Node.js・PostgreSQLを用いたフルスタックWebアプリケーション「TechMatch Japan」を個人で開発中であり、AWS（S3、CloudFront、EC2、RDS）へのデプロイ構成も設計しています。GitHub上でプロジェクトコードを公開しており、コードの品質とアーキテクチャをご確認いただけます。現在は半導体装置エンジニアとして、ミスの許されない環境で精密な業務遂行と責任感を養いながら、AWS Cloud Practitioner認定を取得しました。日本語（JLPT N2）、英語、ヒンディー語のトリリンガルとして、グローバルなチーム開発環境にも対応可能です。ITエンジニアとして、フロントエンド、バックエンド、ゲーム開発など特定の領域に限定せず、柔軟に技術をキャッチアップし適応する意欲を持っており、貴社の事業発展に貢献したいと考えております。
         </p>
       </div>
 
