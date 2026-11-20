@@ -16,34 +16,22 @@
       --accent: #b08d57;
       --accent-light: #d4b88c;
       --text: #2c2c2c;
-      --text-muted: #6b6b6b;
+      --text-muted: #5f5f5f;
       --text-light: #f0ece4;
-      --section-line: #e0dbd3;
       --surface: #ffffff;
-      --tag-bg: #f3f0ea;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    @page {
-      size: A4;
-      margin: 12mm 0;        
-    }
-
-    @page :first {
-      margin-top: 0;        
-    }
+    @page { size: A4; margin: 12mm 0; }
+    @page :first { margin-top: 0; }
 
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       font-size: 9.5pt;
-      line-height: 1.55;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -53,24 +41,19 @@
       margin: 0 auto;
       background: var(--surface);
       box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      position: relative;
     }
 
     /* ── HEADER ── */
     .header {
       background: var(--header-bg);
-      padding: 36px 44px 32px;
+      padding: 34px 44px 28px;
       position: relative;
-      overflow: hidden;
     }
 
     .header::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
     }
@@ -86,778 +69,293 @@
     }
 
     .header-subtitle {
-      font-size: 9pt;
+      font-size: 10pt;
       color: var(--accent-light);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
-    .header-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 24px;
-      font-size: 8pt;
-      color: #a0a0a0;
+    .header-line {
+      font-size: 8.5pt;
+      color: #b4b4b4;
+      margin-bottom: 3px;
     }
 
-    .header-contact span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .header-contact a {
-      color: var(--accent-light);
-      text-decoration: none;
-    }
-
-    .dot {
-      width: 3px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
+    .header-line a { color: var(--accent-light); text-decoration: none; }
 
     .visa-tag {
       display: inline-block;
-      background: rgba(176, 141, 87, 0.15);
       color: var(--accent-light);
-      font-size: 7pt;
-      padding: 2px 8px;
-      border-radius: 3px;
-      letter-spacing: 0.06em;
-      margin-top: 10px;
+      font-size: 8pt;
+      margin-top: 6px;
     }
 
     /* ── BODY ── */
-    .body {
-      display: grid;
-      grid-template-columns: 1fr 240px;
-      gap: 0;
-      min-height: calc(297mm - 140px);
-    }
+    .body { padding: 26px 44px 30px; }
 
-    .main {
-      padding: 28px 32px 28px 44px;
-    }
-
-    .sidebar {
-      padding: 28px 28px 28px 0;
-      border-left: 1px solid var(--section-line);
-      padding-left: 24px;
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      margin-bottom: 22px;
-    }
+    .section { margin-bottom: 20px; }
 
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 12pt;
+      font-size: 13pt;
       font-weight: 700;
       color: var(--header-bg);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      padding-bottom: 6px;
-      margin-bottom: 14px;
-      border-bottom: 2px solid var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .sidebar .section-title {
-      font-size: 10pt;
-      letter-spacing: 0.14em;
-    }
-
-    /* ── SUMMARY ── */
-    .summary {
-      font-size: 8.8pt;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 0;
-    }
-
-    /* ── PROJECTS ── */
-    .project {
-      margin-bottom: 16px;
-      page-break-inside: avoid;
-    }
-
-    .project:last-child {
-      margin-bottom: 0;
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 4px;
-    }
-
-    .project-name {
-      font-weight: 600;
-      font-size: 9.5pt;
-      color: var(--header-bg);
-    }
-
-    .project-badge {
-      font-size: 7pt;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: rgba(176, 141, 87, 0.08);
-      padding: 1px 7px;
-      border-radius: 2px;
-      flex-shrink: 0;
-      margin-left: 8px;
-    }
-
-    .project-tech {
-      font-size: 7.5pt;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-      letter-spacing: 0.02em;
-    }
-
-    .project-links {
-      font-size: 7pt;
-      margin-bottom: 5px;
-    }
-
-    .project-links a {
-      color: var(--accent);
-      text-decoration: none;
-      margin-right: 10px;
-    }
-
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-
-    .project ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .project li {
-      font-size: 8.5pt;
-      padding-left: 12px;
-      position: relative;
-      margin-bottom: 3px;
-      line-height: 1.5;
-    }
-
-    .project li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 7px;
-      width: 4px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* ── EXPERIENCE ── */
-    .job {
-      margin-bottom: 16px;
-      page-break-inside: avoid;
-    }
-
-    .job:last-child {
-      margin-bottom: 0;
-    }
-
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1px;
-    }
-
-    .job-title {
-      font-weight: 600;
-      font-size: 9.5pt;
-      color: var(--header-bg);
-    }
-
-    .job-date {
-      font-size: 7.5pt;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      margin-left: 8px;
-    }
-
-    .job-company {
-      font-size: 8pt;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-      font-style: italic;
-    }
-
-    .job ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .job li {
-      font-size: 8.5pt;
-      padding-left: 12px;
-      position: relative;
-      margin-bottom: 3px;
-      line-height: 1.5;
-    }
-
-    .job li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 7px;
-      width: 4px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .job-note {
-      font-size: 7.5pt;
-      color: var(--accent);
-      font-style: italic;
-      margin-top: 4px;
-    }
-
-    /* ── SIDEBAR ITEMS ── */
-    .skill-group {
-      margin-bottom: 14px;
-    }
-
-    .skill-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .skill-label {
-      font-size: 7pt;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .skill-tag {
-      font-size: 7.5pt;
-      background: var(--tag-bg);
-      color: var(--text);
-      padding: 2px 7px;
-      border-radius: 2px;
-      line-height: 1.5;
-    }
-
-    .skill-tag.highlight {
-      background: rgba(176, 141, 87, 0.12);
-      color: #8a6d3b;
-    }
-
-    .sidebar-section {
-      margin-bottom: 20px;
-    }
-
-    .edu-item {
+      padding-bottom: 5px;
       margin-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
     }
 
-    .edu-item:last-child {
-      margin-bottom: 0;
-    }
+    .summary { font-size: 9pt; color: var(--text-muted); line-height: 1.65; }
 
-    .edu-school {
-      font-size: 8.5pt;
-      font-weight: 600;
-      color: var(--header-bg);
-      line-height: 1.3;
-    }
+    .skill-line { font-size: 8.8pt; margin-bottom: 3px; }
+    .skill-line strong { font-weight: 600; color: var(--header-bg); }
 
-    .edu-detail {
-      font-size: 7.5pt;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
+    .entry { margin-bottom: 14px; break-inside: avoid; }
+    .entry:last-child { margin-bottom: 0; }
 
-    .cert-item {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 5px;
-      font-size: 8pt;
-      line-height: 1.4;
-    }
-
-    .cert-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .cert-dot {
-      width: 3px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
-
-    .cert-status {
-      font-size: 6.5pt;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      display: inline-block;
-      background: rgba(176, 141, 87, 0.1);
-      padding: 0 5px;
-      border-radius: 2px;
-      margin-left: 2px;
-    }
-
-    .lang-item {
+    .entry-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 5px;
-      font-size: 8pt;
+      gap: 12px;
     }
 
-    .lang-item:last-child {
-      margin-bottom: 0;
+    .entry-title { font-weight: 600; font-size: 9.8pt; color: var(--header-bg); }
+    .entry-meta { font-size: 8pt; color: var(--text-muted); flex-shrink: 0; }
+    .entry-sub { font-size: 8.2pt; color: var(--text-muted); margin-bottom: 4px; }
+
+    .entry ul { list-style: none; }
+
+    .entry li {
+      font-size: 8.8pt;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 2px;
     }
 
-    .lang-level {
-      font-size: 7pt;
-      color: var(--text-muted);
+    .entry li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 4px; height: 1px;
+      background: var(--accent);
     }
 
-    /* ── PRINT ── */
+    .entry-links { font-size: 7.8pt; margin-top: 3px; color: var(--text-muted); }
+    .entry-links a { color: #8a6d3b; text-decoration: none; margin-right: 10px; }
+    .entry-note { font-size: 8pt; color: #8a6d3b; font-style: italic; margin-top: 3px; }
+
+    .plain-list { list-style: none; }
+    .plain-list li { font-size: 8.8pt; margin-bottom: 3px; }
+    .plain-list a { color: #8a6d3b; text-decoration: none; }
+
     @media print {
-      html,
-      body {
+      html, body {
         background: white;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-
-      .page {
-        box-shadow: none;
-        margin: 0;
-        width: 100%;
-        min-height: 0;
-        overflow: visible;
-      }
-
-      .body {
-        min-height: 0;
-      }
-
-      .fade-in {
-        opacity: 1;
-        transform: none;
-        animation: none;
-      }
-
-      .section-title {
-        break-after: avoid;
-      }
-
-      .header { padding-top: 26px; padding-bottom: 22px; }
-      .main { padding-top: 22px; padding-bottom: 14px; }
-      .sidebar { padding-top: 22px; padding-bottom: 14px; }
-      .content { padding-top: 22px; padding-bottom: 14px; }
-      .section { margin-bottom: 15px; }
-      .sidebar-section { margin-bottom: 14px; }
-      .section-title { margin-bottom: 10px; }
-      .project,
-      .job { margin-bottom: 11px; }
-      .project li,
-      .job li { line-height: 1.42; margin-bottom: 2px; }
-      .header-contact { gap: 4px 16px; }
-      .header-name { font-size: 29pt; }
-
-      .project,
-      .job,
-      .edu-item,
-      .skill-group,
-      .cert-item,
-      .lang-item {
-        break-inside: avoid;
-      }
-    }
-
-    /* ── ANIMATION ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 0.5s ease forwards;
-    }
-
-    .fade-in:nth-child(2) {
-      animation-delay: 0.06s;
-    }
-
-    .fade-in:nth-child(3) {
-      animation-delay: 0.12s;
-    }
-
-    .fade-in:nth-child(4) {
-      animation-delay: 0.18s;
-    }
-
-    .fade-in:nth-child(5) {
-      animation-delay: 0.24s;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .page { box-shadow: none; margin: 0; width: 100%; min-height: 0; }
+      .header { padding-top: 24px; padding-bottom: 20px; }
+      .body { padding-top: 20px; padding-bottom: 12px; }
+      .section { margin-bottom: 14px; }
+      .section-title { break-after: avoid; margin-bottom: 8px; }
+      .entry { margin-bottom: 10px; }
     }
   </style>
 </head>
 
 <body>
-
   <div class="page">
 
-    <!-- HEADER -->
     <div class="header">
       <div class="header-name">Tejas Agrawal</div>
-      <div class="header-subtitle">Backend &amp; Cloud (AWS) Engineer &middot; Full-Stack Developer</div>
-      <div class="header-contact">
-        <span>080-4125-5955</span>
-        <span class="dot"></span>
-        <span><a href="mailto:tejas.agarwal.5@gmail.com">tejas.agarwal.5@gmail.com</a></span>
-        <span class="dot"></span>
-        <span><a href="https://tejas-agrawal.web.app/">Portfolio</a></span>
-        <span class="dot"></span>
-        <span><a href="https://github.com/alk3yn">GitHub (alk3yn)</a></span>
-        <span class="dot"></span>
-        <span><a href="https://github.com/tejas-5">GitHub (tejas-5)</a></span>
-        <span class="dot"></span>
-        <span><a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a></span>
-        <span class="dot"></span>
-        <span>Takaoka, Toyama &mdash; Open to Relocation &middot; Remote OK</span>
+      <div class="header-subtitle">Seeking: Backend / Cloud (AWS) Engineer role</div>
+      <div class="header-line">
+        080-4125-5955 | <a href="mailto:tejas.agarwal.5@gmail.com">tejas.agarwal.5@gmail.com</a> |
+        <a href="https://tejas-agrawal.web.app/">Portfolio</a> |
+        <a href="https://github.com/alk3yn">GitHub</a> |
+        <a href="https://www.linkedin.com/in/tejasagrawal5/">LinkedIn</a>
       </div>
-      <div class="visa-tag">Engineer / Specialist in Humanities Visa &mdash; No Employer Restrictions</div>
+      <div class="header-line">Takaoka, Toyama — Open to Relocation · Remote OK</div>
+      <div class="visa-tag">Engineer / Specialist in Humanities Visa — No Employer Restrictions</div>
     </div>
 
-    <!-- BODY -->
     <div class="body">
 
-      <!-- MAIN CONTENT -->
-      <div class="main">
+      <div class="section">
+        <div class="section-title">Summary</div>
+        <p class="summary">Career changer moving into backend and cloud engineering. Deployed a full-stack web application on AWS (S3, CloudFront, EC2 with nginx and PM2, RDS PostgreSQL), built with AI coding assistants as a hands-on cloud project. AWS Cloud Practitioner certified; studying for Solutions Architect &ndash; Associate. Studied game programming in Tokyo (C#, Unity), including team delivery of a game exhibited at Tokyo Game Show 2025. Currently assembling and cross-verifying semiconductor equipment modules; previously four years in audit in India. Trilingual (Japanese N2, English, Hindi); seeking a backend or cloud engineering role in Japan.</p>
+      </div>
 
-        <!-- SUMMARY -->
-        <div class="section fade-in">
-          <div class="section-title">Professional Summary</div>
-          <p class="summary">Aspiring backend and cloud engineer who designed, built, and deployed a full-stack web application on AWS (React, Node.js/Express, PostgreSQL on RDS; S3, CloudFront, EC2, nginx, PM2). AWS Cloud Practitioner certified and currently studying for Solutions Architect &ndash; Associate. Trained in software development at a Tokyo vocational school (C#, JavaScript, SQL) and delivered several web and game projects end to end, including a title exhibited at Tokyo Game Show 2025. Currently a semiconductor equipment engineer, where precision assembly, troubleshooting, and SOP documentation built the zero-defect discipline I bring to reliable system operations. Trilingual (Japanese N2, English, Hindi); seeking a backend or cloud engineering role in Japan.</p>
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skill-line"><strong>Cloud &amp; Infrastructure:</strong> AWS (S3, CloudFront, EC2, RDS), nginx, PM2</div>
+        <div class="skill-line"><strong>Languages:</strong> JavaScript, C#, Python, SQL, HTML5, CSS3</div>
+        <div class="skill-line"><strong>Backend &amp; Databases:</strong> Node.js, Express.js, REST API, JWT authentication, PostgreSQL, MySQL</div>
+        <div class="skill-line"><strong>Frontend:</strong> React, Next.js, Chart.js</div>
+        <div class="skill-line"><strong>Game Development:</strong> Unity, Unreal Engine, Blender</div>
+        <div class="skill-line"><strong>Tools:</strong> Git/GitHub, Firebase</div>
+        <div class="skill-line"><strong>Business:</strong> Advanced Excel, Tally ERP</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Projects</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">TechMatch Japan</span>
+            <span class="entry-meta">Personal project, live on AWS</span>
+          </div>
+          <div class="entry-sub">React, Node.js / Express.js, PostgreSQL, Chart.js, JWT, i18next, AWS (S3, CloudFront, EC2, RDS)</div>
+          <ul>
+            <li>Bilingual (JP/EN) IT career platform with a salary analytics dashboard, skill gap analysis, and job filtering with sorting and pagination</li>
+            <li>Built with AI coding assistants as a hands-on project to learn AWS deployment; includes a REST API (17 endpoints), JWT authentication, and a PostgreSQL database</li>
+            <li>Deployed on AWS: S3 + CloudFront (frontend), EC2 with nginx and PM2 (API), RDS (database), served over HTTPS through CloudFront</li>
+          </ul>
+          <div class="entry-links"><a href="https://d3laf37ajd6nv0.cloudfront.net/">Live</a><a href="https://github.com/alk3yn/techmatch-japan">GitHub</a></div>
         </div>
 
-        <!-- PROJECTS -->
-        <div class="section fade-in">
-          <div class="section-title">Projects</div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">TechMatch Japan</span>
-              <span class="project-badge">Full-Stack &middot; Live on AWS</span>
-            </div>
-            <div class="project-tech">React &bull; Node.js &bull; Express.js &bull; PostgreSQL &bull; Chart.js &bull; JWT &bull; i18next &bull; AWS (S3, CloudFront, EC2, RDS)</div>
-            <div class="project-links">
-              <a href="https://d3laf37ajd6nv0.cloudfront.net/">Live</a>
-              <a href="https://github.com/alk3yn/techmatch-japan">GitHub</a>
-            </div>
-            <ul>
-              <li>Solo project, deployed on AWS: a bilingual (JP/EN) IT career intelligence platform with a salary
-                analytics dashboard (Chart.js), skill gap analyzer, and job filtering with sorting, pagination, and
-                shareable URL state</li>
-              <li>Implemented JWT-based authentication (register, login, profile), saved searches, and a skill profile
-                that persists across sessions; REST API with 17 endpoints on Express.js and PostgreSQL</li>
-              <li>Designed and deployed the architecture on AWS (S3 + CloudFront for the React frontend, EC2 with nginx and PM2 for the API, RDS for PostgreSQL), serving the site and API over HTTPS through CloudFront; wrote deploy scripts; applied code-splitting (596KB &rarr; 337KB
-                bundle)</li>
-            </ul>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">ShadowNyanNyan</span>
+            <span class="entry-meta">Team project, exhibited at Tokyo Game Show 2025</span>
           </div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">Wilderness Sniper</span>
-              <span class="project-badge">Published on itch.io</span>
-            </div>
-            <div class="project-tech">Unity &bull; C# &bull; TextMesh Pro &bull; Coroutine System</div>
-            <div class="project-links">
-              <a href="https://alk3yn.itch.io/wilderness-sniper">itch.io</a>
-              <a href="https://github.com/tejas-5/wilderness-sniper">GitHub</a>
-            </div>
-            <ul>
-              <li>Designed and built a 2D arcade shooter with full UI/UX: main menu, pause, game-over/clear screens, and
-                interactive tutorial</li>
-              <li>Developed &ldquo;Error Code&rdquo; timed puzzle mini-game with WASD input, coroutine-driven
-                animations, and real-time validation</li>
-              <li>Integrated audio system, dual-UI scoring, and resolution optimization across screen sizes over 3
-                months (12 commits)</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">ShadowNyanNyan</span>
-              <span class="project-badge">TGS 2025</span>
-            </div>
-            <div class="project-tech">Unity &bull; C# &bull; 2D Physics &bull; Team Project</div>
-            <div class="project-links">
-              <a href="https://github.com/tejas-5/shadownyanyan">GitHub</a>
-            </div>
-            <ul>
-              <li>Co-developed a 2D platformer exhibited at Tokyo Game Show (September 2025)</li>
-              <li>Implemented dual-character control with camera routing, shadow-follow logic, and Rigidbody2D physics</li>
-              <li>Served as primary debugger for level integration; resolved cross-team code conflicts and merge issues</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">Kanaubito</span>
-              <span class="project-badge">Narrative Game</span>
-            </div>
-            <div class="project-tech">Unity &bull; C# &bull; ScriptableObject &bull; 2D Top-Down</div>
-            <div class="project-links">
-              <a href="https://github.com/ShuuJun/kanaubitoProject">GitHub</a>
-            </div>
-            <ul>
-              <li>Built complete inventory system (5 scripts) with ScriptableObject data architecture, drag-and-drop UI,
-                item stacking</li>
-              <li>Developed day/night cycle with Light2D transitions, fade-to-black coroutines, and event-driven NPC
-                behavior</li>
-              <li>Designed full school environment layout and player flow for level design</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">Client Portfolio Site</span>
-              <span class="project-badge">Delivered</span>
-            </div>
-            <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase</div>
-            <div class="project-links">
-              <a href="https://naimur-rahman-aeae2.web.app/">Live</a>
-            </div>
-            <ul>
-              <li>Built foundational bilingual (JP/EN) portfolio structure for a fellow developer with responsive layout
-                and navigation</li>
-              <li>Delivered a reusable, customizable template deployed via Firebase Hosting</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <div class="project-header">
-              <span class="project-name">Personal Portfolio</span>
-              <span class="project-badge">Live</span>
-            </div>
-            <div class="project-tech">HTML5 &bull; CSS3 &bull; JavaScript &bull; Firebase &bull; SEO</div>
-            <div class="project-links">
-              <a href="https://tejas-agrawal.web.app/">Live</a>
-              <a href="https://github.com/alk3yn/Portfolio-Website">GitHub</a>
-            </div>
-            <ul>
-              <li>Built a fully responsive bilingual (JP/EN) site from scratch with dynamic language switching and
-                scroll animations</li>
-              <li>Implemented Schema.org structured data, Open Graph meta tags, and Formspree contact integration</li>
-            </ul>
-          </div>
+          <div class="entry-sub">Unity, C#, 2D Physics</div>
+          <ul>
+            <li>Co-developed a 2D platformer exhibited at Tokyo Game Show (September 2025)</li>
+            <li>Implemented dual-character control (camera routing, shadow-follow logic, Rigidbody2D physics); primary debugger for level integration, resolving cross-team code conflicts</li>
+          </ul>
+          <div class="entry-links"><a href="https://github.com/tejas-5/shadownyanyan">GitHub</a></div>
         </div>
 
-        <!-- EXPERIENCE -->
-        <div class="section fade-in">
-          <div class="section-title">Experience</div>
-
-          <div class="job">
-            <div class="job-header">
-              <span class="job-title">Semiconductor Equipment Engineer</span>
-              <span class="job-date">Apr 2026 &mdash; Present</span>
-            </div>
-            <div class="job-company">Alten Japan (Assigned to SCREEN Takaoka) &middot; Takaoka, Japan</div>
-            <ul>
-              <li>Execute precision assembly across mechanical, electrical, and module integration phases for
-                semiconductor fluid delivery systems</li>
-              <li>Perform digital-instruction-based assembly with I/O verification and cross-checks under zero-defect
-                tolerance</li>
-              <li>Manage high-precision chemical process modules (H2SO4, DDI, DHF, IPA) following strict safety
-                protocols</li>
-              <li>Create and maintain technical documentation, SOPs, and quality checklists for calibration and
-                troubleshooting</li>
-              <li>Mentor newly assigned team members on assembly procedures and quality checkpoints; enforce
-                cross-verification to prevent defects</li>
-            </ul>
-            <div class="job-note">Building toward a backend and cloud engineering career through AWS certification and hands-on projects.
-            </div>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Kanaubito</span>
+            <span class="entry-meta">Team narrative game</span>
           </div>
+          <div class="entry-sub">Unity, C#, ScriptableObject</div>
+          <ul>
+            <li>Built a complete inventory system (5 scripts): ScriptableObject data, drag-and-drop UI, item stacking</li>
+            <li>Built a day/night cycle (Light2D transitions, fade coroutines) and event-driven NPC behavior</li>
+          </ul>
+          <div class="entry-links"><a href="https://github.com/ShuuJun/kanaubitoProject">GitHub</a></div>
+        </div>
 
-          <div class="job">
-            <div class="job-header">
-              <span class="job-title">Auditor / Management</span>
-              <span class="job-date">Jul 2018 &mdash; Nov 2022</span>
-            </div>
-            <div class="job-company">Todi Tulsyan &amp; Co. &middot; Mumbai, India</div>
-            <ul>
-              <li>Conducted financial and operational audits for clients across manufacturing, insurance, and banking
-                sectors</li>
-              <li>Performed data analysis using advanced Excel (pivot tables, VLOOKUP, macros) to identify discrepancies</li>
-              <li>Managed parallel projects across multiple industries with strict compliance and documentation
-                standards</li>
-              <li>Filed GST and income tax returns for multiple clients using Tally ERP</li>
-            </ul>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Wilderness Sniper</span>
+            <span class="entry-meta">Published on itch.io</span>
           </div>
+          <div class="entry-sub">Unity, C#, TextMesh Pro</div>
+          <ul>
+            <li>2D arcade shooter with main menu, pause and game-over/clear screens, and an interactive tutorial</li>
+            <li>&ldquo;Error Code&rdquo; timed puzzle mini-game with WASD input, coroutine-driven animations, and real-time validation</li>
+            <li>Integrated audio, dual-UI scoring, and resolution optimization across screen sizes</li>
+          </ul>
+          <div class="entry-links"><a href="https://alk3yn.itch.io/wilderness-sniper">itch.io</a><a href="https://github.com/tejas-5/wilderness-sniper">GitHub</a></div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Portfolio Websites</span>
+            <span class="entry-meta">Live on Firebase Hosting</span>
+          </div>
+          <div class="entry-sub">HTML5, CSS3, JavaScript, Firebase</div>
+          <ul>
+            <li>Personal portfolio: bilingual (JP/EN) responsive site with language switching, project showcase, skills and experience timeline, downloadable resumes, and a contact form</li>
+            <li>Client portfolio: bilingual (JP/EN) portfolio template with responsive layout and section navigation, delivered as a customizable template</li>
+          </ul>
+          <div class="entry-links"><a href="https://tejas-agrawal.web.app/">Live (personal)</a><a href="https://naimur-rahman-aeae2.web.app/">Live (client)</a><a href="https://github.com/alk3yn/Portfolio-Website">GitHub</a></div>
         </div>
       </div>
 
-      <!-- SIDEBAR -->
-      <div class="sidebar">
+      <div class="section">
+        <div class="section-title">Experience</div>
 
-        <div class="sidebar-section">
-          <div class="section-title">Skills</div>
-
-          <div class="skill-group">
-            <div class="skill-label">Languages</div>
-            <div class="skill-items">
-              <span class="skill-tag highlight">C#</span>
-              <span class="skill-tag highlight">JavaScript</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">C++</span>
-              <span class="skill-tag">Java (basic)</span>
-              <span class="skill-tag">HTML5</span>
-              <span class="skill-tag">CSS3</span>
-              <span class="skill-tag">SQL</span>
-            </div>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Technical Staff &ndash; Semiconductor Equipment Assembly</span>
+            <span class="entry-meta">Apr 2026 &ndash; Present</span>
           </div>
-
-          <div class="skill-group">
-            <div class="skill-label">Frameworks &amp; Libraries</div>
-            <div class="skill-items">
-              <span class="skill-tag highlight">React</span>
-              <span class="skill-tag highlight">Node.js</span>
-              <span class="skill-tag">Express.js</span>
-              <span class="skill-tag">Next.js (basic)</span>
-              <span class="skill-tag">Chart.js</span>
-            </div>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-label">Engines &amp; Tools</div>
-            <div class="skill-items">
-              <span class="skill-tag highlight">Unity</span>
-              <span class="skill-tag">Unreal Engine</span>
-              <span class="skill-tag">Git/GitHub</span>
-              <span class="skill-tag">Firebase</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">Blender</span>
-            </div>
-          </div>
-
-          <div class="skill-group">
-            <div class="skill-label">Cloud</div>
-            <div class="skill-items">
-              <span class="skill-tag highlight">AWS</span>
-              <span class="skill-tag">S3</span>
-              <span class="skill-tag">CloudFront</span>
-              <span class="skill-tag">EC2</span>
-              <span class="skill-tag">RDS</span>
-            </div>
-          </div>
+          <div class="entry-sub">Alten Japan (assigned to SCREEN Takaoka), Takaoka, Japan</div>
+          <ul>
+            <li>Assemble semiconductor fluid delivery system modules (DDI, DHF and others) in a 3-person team, rotating across mechanical assembly, electrical wiring, and module integration</li>
+            <li>Follow digital work instructions (VPS viewer) for precision assembly; carry out I/O checks and cross-verification with colleagues, reporting any issues found so they can be corrected</li>
+            <li>Brief newly assigned teammates on assembly procedures when paired with them</li>
+          </ul>
+          <div class="entry-note">Building toward a backend and cloud engineering career through AWS certification and hands-on projects.</div>
         </div>
 
-        <div class="sidebar-section">
-          <div class="section-title">Education</div>
-
-          <div class="edu-item">
-            <div class="edu-school">Diploma in Game Programming</div>
-            <div class="edu-detail">Tokyo Cool Japan Academy<br>Apr 2024 &mdash; Mar 2026</div>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Auditor</span>
+            <span class="entry-meta">Jul 2018 &ndash; Nov 2022</span>
           </div>
-
-          <div class="edu-item">
-            <div class="edu-school">Japanese Language Studies</div>
-            <div class="edu-detail">Toyo Language School, Tokyo<br>Jul 2023 &mdash; Mar 2024</div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-school">MBA in Information Technology</div>
-            <div class="edu-detail">Amity University, India<br>Dec 2019 &mdash; Dec 2021</div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-school">Bachelor of Commerce</div>
-            <div class="edu-detail">Thakur College, India<br>Apr 2015 &mdash; Apr 2018</div>
-          </div>
+          <div class="entry-sub">Todi Tulsyan &amp; Co., Mumbai, India</div>
+          <ul>
+            <li>Conducted financial and operational audits for clients in manufacturing, insurance, and banking</li>
+            <li>Used advanced Excel to detect discrepancies and compliance issues</li>
+            <li>Handled multiple engagements across industries concurrently, with documentation to regulatory standards</li>
+            <li>Prepared and filed GST and income tax returns for multiple clients using Tally ERP</li>
+          </ul>
+          <div class="entry-note">Left to pursue studies in Japan.</div>
         </div>
-
-        <div class="sidebar-section">
-          <div class="section-title">Certifications</div>
-
-          <div class="cert-item">
-            <span class="cert-dot"></span>
-            <span>AWS Cloud Practitioner &mdash; Sep 2026</span>
-          </div>
-          <div class="cert-item">
-            <span class="cert-dot"></span>
-            <span>JLPT N2 &mdash; Jul 2025</span>
-          </div>
-          <div class="cert-item">
-            <span class="cert-dot"></span>
-            <span>Game Dev with Unity &mdash; Mar 2022</span>
-          </div>
-          <div class="cert-item">
-            <span class="cert-dot"></span>
-            <span>Advanced Excel &mdash; Jul 2021</span>
-          </div>
-        </div>
-
-        <div class="sidebar-section">
-          <div class="section-title">Languages</div>
-
-          <div class="lang-item">
-            <span>Japanese</span>
-            <span class="lang-level">Business / N2</span>
-          </div>
-          <div class="lang-item">
-            <span>English</span>
-            <span class="lang-level">Business</span>
-          </div>
-          <div class="lang-item">
-            <span>Hindi</span>
-            <span class="lang-level">Native</span>
-          </div>
-        </div>
-
       </div>
+
+      <div class="section">
+        <div class="section-title">Education</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Tokyo Cool Japan Academy, Tokyo</span>
+            <span class="entry-meta">Apr 2024 &ndash; Mar 2026</span>
+          </div>
+          <div class="entry-sub">Game Programmer Major, Game Comprehensive Department</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Toyo Language School, Tokyo</span>
+            <span class="entry-meta">Jul 2023 &ndash; Mar 2024</span>
+          </div>
+          <div class="entry-sub">Japanese Language Studies</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Amity University, India</span>
+            <span class="entry-meta">Dec 2019 &ndash; Dec 2021</span>
+          </div>
+          <div class="entry-sub">MBA in Information Technology (distance learning)</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">University of Mumbai, India</span>
+            <span class="entry-meta">Apr 2015 &ndash; Apr 2018</span>
+          </div>
+          <div class="entry-sub">Bachelor of Commerce</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Certifications</div>
+        <ul class="plain-list">
+          <li>AWS Cloud Practitioner | Sep 2026 | <a href="https://www.credly.com/badges/47ffb704-64a2-4535-9fa1-e07cca59873f/public_url">Verify on Credly</a></li>
+          <li>JLPT N2 | Jul 2025</li>
+          <li>Game Design and Development with Unity (course certificate) | Mar 2022</li>
+          <li>Advanced Excel | Jul 2021</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Languages</div>
+        <div class="skill-line">Japanese: Business / JLPT N2 &nbsp;|&nbsp; English: Business &nbsp;|&nbsp; Hindi: Native</div>
+      </div>
+
     </div>
   </div>
-
 </body>
 
 </html>
